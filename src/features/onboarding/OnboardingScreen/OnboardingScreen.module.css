@@ -1,0 +1,7 @@
+.main {
+  max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;
+  padding: calc(28px + env(safe-area-inset-top)) var(--gutter) calc(40px + env(safe-area-inset-bottom));
+}
+.lede { color: var(--ink-2); max-width: 52ch; }
+.nav { display: flex; gap: 10px; justify-content: flex-end; }
+.alt { display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--line-soft); padding-top: 16px; }

@@ -1,0 +1,9 @@
+.wrap { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
+.lede { color: var(--ink-2); }
+.row {
+  display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end;
+  padding: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
+}
+.name { grid-column: 1 / -1; }
+.remove { padding: 0 12px; }
+@media (min-width: 720px) { .row { grid-template-columns: 2fr 1fr 1fr auto; } .name { grid-column: auto; } }
