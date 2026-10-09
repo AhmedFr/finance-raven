@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { makeEntry, makeProfile } from "../../../domain/testing/fixtures";
@@ -30,5 +30,15 @@ describe("EntriesScreen", () => {
     expect(labels).toEqual(["févr. 2026", "juin 2026", "nov. 2026"]);
     expect(scrolled).toHaveLength(1);
     expect(scrolled[0]).toBe(container.querySelector('section[aria-label="juin 2026"]'));
+  });
+
+  it("does not scroll again when an entry is edited in the same year", () => {
+    render(<MemoryRouter><EntriesScreen /></MemoryRouter>);
+    expect(scrolled).toHaveLength(1);
+    act(() => {
+      const [first, ...rest] = useAppStore.getState().entries;
+      useAppStore.setState({ entries: [{ ...first, amount: 5 }, ...rest] });
+    });
+    expect(scrolled).toHaveLength(1);
   });
 });

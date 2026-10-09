@@ -20,12 +20,14 @@ export interface DismissInput {
   distancePx: number;
   ratio: number;
   velocity: number;
+  minFlickPx?: number;
 }
 
 /** A drag dismisses the drawer when it travelled far enough or was flicked fast enough. */
-export function shouldDismiss({ dy, elapsedMs, panelHeight, distancePx, ratio, velocity }: DismissInput): boolean {
+export function shouldDismiss({ dy, elapsedMs, panelHeight, distancePx, ratio, velocity, minFlickPx = 10 }: DismissInput): boolean {
   if (dy <= 0) return false;
   if (dy > Math.min(distancePx, panelHeight * ratio)) return true;
+  if (dy < minFlickPx) return false;
   return dy / Math.max(elapsedMs, 1) > velocity;
 }
 

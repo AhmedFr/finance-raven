@@ -10,7 +10,7 @@ export function Drawer({ open, title, onClose, children }: DrawerProps) {
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
-  const dragHandlers = useDragToDismiss({ panelRef, backdropRef, onClose });
+  const dragHandlers = useDragToDismiss({ open, panelRef, backdropRef, onClose });
   const onCloseRef = useRef(onClose);
   useEffect(() => { onCloseRef.current = onClose; }, [onClose]);
 

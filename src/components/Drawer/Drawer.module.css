@@ -16,7 +16,7 @@
 }
 .body {
   flex: 1 1 auto; min-height: 0; overflow: auto; overscroll-behavior: contain;
-  padding: 0 var(--gutter) calc(0px + env(safe-area-inset-bottom));
+  padding: 0 var(--gutter);
 }
 @keyframes slide-up { from { transform: translateY(24px); opacity: 0; } }
 @media (prefers-reduced-motion: no-preference) { .panel { animation: slide-up 0.22s ease-out; } }

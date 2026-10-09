@@ -36,7 +36,7 @@ describe("Drawer", () => {
       render(<Drawer open title="Nouvel encaissement" onClose={onCloseMock}>contenu</Drawer>);
       const handle = document.querySelector("[data-drag-handle]") as HTMLElement;
       now.mockReturnValue(1000);
-      fireEvent.pointerDown(handle, { clientY: 100, pointerId: 1 });
+      fireEvent.pointerDown(handle, { clientY: 100, pointerId: 1, isPrimary: true });
       fireEvent.pointerMove(handle, { clientY: 100 + dy, pointerId: 1 });
       now.mockReturnValue(1000 + ms);
       fireEvent.pointerUp(handle, { clientY: 100 + dy, pointerId: 1 });
@@ -57,5 +57,39 @@ describe("Drawer", () => {
       drag(20, 1000);
       expect(onCloseMock).not.toHaveBeenCalled();
     });
+  })
+  it("forgets a half-finished drag when closed and reopened", () => {
+    const onClose = vi.fn();
+    const { rerender } = render(<Drawer open title="T" onClose={onClose}>x</Drawer>);
+    let handle = document.querySelector("[data-drag-handle]") as HTMLElement;
+    fireEvent.pointerDown(handle, { clientY: 100, pointerId: 1, isPrimary: true });
+    fireEvent.pointerMove(handle, { clientY: 130, pointerId: 1 });
+    rerender(<Drawer open={false} title="T" onClose={onClose}>x</Drawer>);
+    rerender(<Drawer open title="T" onClose={onClose}>x</Drawer>);
+    handle = document.querySelector("[data-drag-handle]") as HTMLElement;
+    fireEvent.pointerMove(handle, { clientY: 400, pointerId: 1 });
+    expect(screen.getByRole("dialog").style.transform).not.toContain("translateY(3");
+    expect(screen.getByRole("dialog").style.transform).toBe("");
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it("ignores secondary buttons and non-primary pointers", () => {
+    const onClose = vi.fn();
+    render(<Drawer open title="T" onClose={onClose}>x</Drawer>);
+    const handle = document.querySelector("[data-drag-handle]") as HTMLElement;
+    fireEvent.pointerDown(handle, { clientY: 100, pointerId: 1, isPrimary: true, button: 2 });
+    fireEvent.pointerMove(handle, { clientY: 400, pointerId: 1 });
+    fireEvent.pointerUp(handle, { clientY: 400, pointerId: 1 });
+    expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it("never dismisses on pointercancel, even after a long drag", () => {
+    const onClose = vi.fn();
+    render(<Drawer open title="T" onClose={onClose}>x</Drawer>);
+    const handle = document.querySelector("[data-drag-handle]") as HTMLElement;
+    fireEvent.pointerDown(handle, { clientY: 100, pointerId: 1, isPrimary: true });
+    fireEvent.pointerMove(handle, { clientY: 500, pointerId: 1 });
+    fireEvent.pointerCancel(handle, { clientY: 500, pointerId: 1 });
+    expect(onClose).not.toHaveBeenCalled();
   });
 });
