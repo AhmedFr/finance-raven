@@ -1,0 +1,15 @@
+.button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line);
+  font: 600 15px var(--font-body); cursor: pointer; background: var(--surface); color: var(--ink);
+  text-decoration: none; transition: transform 0.1s ease;
+}
+.button:active { transform: scale(0.98); }
+.button:disabled { opacity: 0.5; cursor: not-allowed; }
+.secondary { }
+.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.lime { background: var(--lime); color: var(--lime-ink); border-color: var(--lime-ink); }
+.ghost { background: transparent; border-color: transparent; }
+.danger { color: var(--crit); border-color: var(--crit); }
+.sm { min-height: 36px; padding: 0 12px; font-size: 13px; }
+.block { width: 100%; }

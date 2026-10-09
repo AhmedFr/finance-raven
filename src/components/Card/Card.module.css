@@ -1,0 +1,7 @@
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 18px; display: flex; flex-direction: column; gap: 14px; min-width: 0;
+}
+.lime { background: var(--lime); color: var(--lime-ink); border-color: var(--lime-ink); }
+.header { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.title { font-size: 20px; }

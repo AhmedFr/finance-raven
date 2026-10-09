@@ -1,0 +1,5 @@
+.header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.titles { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.eyebrow { font: 600 12px var(--font-body); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); }
+.title { font-size: clamp(30px, 8vw, 44px); line-height: 1; }
+.actions { display: flex; gap: 8px; align-items: center; max-width: 100%; }
