@@ -1,8 +1,8 @@
 .root { position: fixed; inset: 0; z-index: 40; display: flex; align-items: flex-end; justify-content: center; }
-.backdrop { position: absolute; inset: 0; background: rgb(17 17 17 / 0.45); }
+.backdrop { position: absolute; inset: 0; background: rgb(12 10 8 / 0.45); }
 .panel {
   position: relative; width: 100%; max-width: 640px; max-height: 92dvh; overflow: auto;
-  background: var(--bg); border: 1px solid var(--line); border-bottom: 0; border-radius: 20px 20px 0 0;
+  background: var(--bg); border-radius: 16px 16px 0 0; box-shadow: var(--shadow-float);
   padding: 4px var(--gutter) calc(24px + env(safe-area-inset-bottom)); outline: none;
 }
 .header {
@@ -11,12 +11,12 @@
 }
 .title { font-size: 22px; }
 .close {
-  flex: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
-  border-radius: 999px; width: 44px; height: 44px; display: grid; place-items: center; cursor: pointer;
+  flex: none; border: 0; background: var(--surface-2); color: var(--ink);
+  border-radius: 50%; width: 44px; height: 44px; display: grid; place-items: center; cursor: pointer;
 }
 @keyframes slide-up { from { transform: translateY(24px); opacity: 0; } }
 @media (prefers-reduced-motion: no-preference) { .panel { animation: slide-up 0.22s ease-out; } }
 @media (min-width: 720px) {
   .root { align-items: center; }
-  .panel { border-radius: 20px; border-bottom: 1px solid var(--line); }
+  .panel { border-radius: 16px; }
 }

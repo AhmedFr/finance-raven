@@ -1,9 +1,9 @@
 .pill {
   display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px;
-  font: 600 12px var(--font-body); white-space: nowrap; background: var(--chip); color: var(--ink-2);
+  font: 500 12px var(--font-body); white-space: nowrap; background: var(--chip); color: var(--ink-2);
 }
 .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
-.neutral { }
+.neutral { background: var(--chip); }
 .good { background: var(--good-soft); color: var(--good); }
 .warn { background: var(--warn-soft); color: var(--warn); }
 .crit { background: var(--crit-soft); color: var(--crit); }

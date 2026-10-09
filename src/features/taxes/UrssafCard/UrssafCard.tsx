@@ -1,3 +1,4 @@
+import { CalendarClock } from "lucide-react";
 import type { UrssafCardProps } from "./UrssafCard.types";
 import { Card } from "../../../components/Card";
 import { Pill } from "../../../components/Pill";
@@ -12,7 +13,7 @@ const NOTES = {
 
 export function UrssafCard({ year, frequency, rows, onTogglePaid }: UrssafCardProps) {
   return (
-    <Card title="Déclarations URSSAF" action={<span className={styles.note}>{NOTES[frequency]}</span>}>
+    <Card icon={CalendarClock} title="Déclarations URSSAF" action={<span className={styles.note}>{NOTES[frequency]}</span>}>
       {rows.length === 0 ? (
         <p className={styles.empty}>Aucune déclaration pour {year}.</p>
       ) : (

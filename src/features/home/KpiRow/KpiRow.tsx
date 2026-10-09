@@ -1,3 +1,4 @@
+import { Gauge as GaugeIcon, HandCoins, PiggyBank, Wallet } from "lucide-react";
 import type { KpiRowProps } from "./KpiRow.types";
 import { Gauge } from "../../../components/Gauge";
 import { KpiTile } from "../../../components/KpiTile";
@@ -10,13 +11,13 @@ export function KpiRow({ year, stats, netReceived, monthlyBudget, cap, isCreatio
   const months = monthlyBudget > 0 ? netReceived / monthlyBudget : 0;
   return (
     <div className={styles.row}>
-      <KpiTile label={`Encaissé ${year}`} value={formatEur(stats.caRecu)}
+      <KpiTile icon={Wallet} label={`Encaissé ${year}`} value={formatEur(stats.caRecu)}
         sub={planned > 0 ? `+ ${formatEur(planned)} prévus → ${formatEur(stats.ca)}` : "aucun encaissement prévu"} />
-      <KpiTile label={`Réserve impôts ${year}`} value={formatEur(stats.reserve)}
+      <KpiTile icon={PiggyBank} label={`Réserve impôts ${year}`} value={formatEur(stats.reserve)}
         sub={`${formatPct(stats.ca > 0 ? stats.reserve / stats.ca : 0)} du CA, prévus inclus${stats.cfe ? ", CFE comprise" : ""}`} />
-      <KpiTile label={`Net pour toi ${year}`} value={formatEur(netReceived)}
+      <KpiTile icon={HandCoins} label={`Net pour toi ${year}`} value={formatEur(netReceived)}
         sub={`déjà encaissé · ≈ ${months.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} mois de budget`} />
-      <KpiTile label={`Plafond micro ${year}`} value={formatPct(capRatio)}
+      <KpiTile icon={GaugeIcon} label={`Plafond micro ${year}`} value={formatPct(capRatio)}
         sub={`${formatEur(stats.ca)} / ${formatEur(cap)}${isCreationYear ? " (proratisé)" : ""}`}>
         <Gauge ratio={capRatio} label={`Plafond micro ${year}`} />
       </KpiTile>

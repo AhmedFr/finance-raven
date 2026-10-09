@@ -1,7 +1,8 @@
 .tile {
-  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-tile);
+  padding: 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0;
 }
-.label { font: 600 11px var(--font-body); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); }
-.value { font-size: 22px; font-weight: 500; overflow-wrap: anywhere; }
+.badge { width: 32px; height: 32px; border-radius: 8px; background: var(--surface-2); display: grid; place-items: center; margin-bottom: 4px; }
+.label { font: 400 12px var(--font-body); color: var(--ink-2); }
+.value { font-size: 24px; font-weight: 400; overflow-wrap: anywhere; }
 .sub { font-size: 12px; color: var(--ink-2); }

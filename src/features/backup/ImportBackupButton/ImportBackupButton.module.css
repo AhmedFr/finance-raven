@@ -1,4 +1,4 @@
 .wrap { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
 .error { color: var(--crit); font-weight: 600; font-size: 14px; }
-.confirm { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 12px; background: var(--surface); display: flex; flex-direction: column; gap: 10px; }
+.confirm { border-radius: var(--radius-sm); padding: 12px; background: var(--surface); display: flex; flex-direction: column; gap: 10px; }
 .actions { display: flex; gap: 8px; flex-wrap: wrap; }

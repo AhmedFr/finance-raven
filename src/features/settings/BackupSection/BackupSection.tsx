@@ -1,3 +1,4 @@
+import { DatabaseBackup } from "lucide-react";
 import { useShallow } from "zustand/react/shallow";
 import { serializeBackup } from "../../../backup/backup";
 import { Button } from "../../../components/Button";
@@ -19,7 +20,7 @@ export function BackupSection() {
     if (saved) markExported(now.toISOString());
   };
   return (
-    <Card title="Sauvegarde">
+    <Card icon={DatabaseBackup} title="Sauvegarde">
       <p className={styles.lede}>Tes données vivent uniquement dans ce navigateur. Exporte-les régulièrement, surtout sur iPhone : c'est aussi comme ça qu'on change d'appareil.</p>
       <div className={styles.actions}>
         <Button variant="primary" onClick={exportNow}>Exporter (JSON)</Button>

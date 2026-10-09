@@ -1,13 +1,13 @@
 .wrap { position: relative; }
 .svg { width: 100%; height: auto; display: block; touch-action: pan-y; }
 .grid { stroke: var(--line-soft); stroke-width: 1; }
-.tick { fill: var(--ink-2); font: 11px var(--font-mono); }
-.net { fill: var(--lime); stroke: var(--lime-ink); stroke-width: 1; }
+.tick { fill: var(--ink-3); font: 11px var(--font-mono); }
+.net { fill: var(--lime); }
 .reserve { fill: var(--ink); }
 .tip {
   position: absolute; pointer-events: none; transform: translate(-50%, calc(-100% - 8px));
-  background: var(--ink); color: var(--bg); font-size: 12px; line-height: 1.45;
-  padding: 8px 10px; border-radius: 10px; white-space: nowrap; max-width: calc(100vw - 32px);
+  background: var(--dark); color: var(--on-dark); font-size: 12px; line-height: 1.45;
+  padding: 8px 10px; border-radius: 8px; white-space: nowrap; max-width: calc(100vw - 32px);
 }
 .tipStart { transform: translate(0, calc(-100% - 8px)); }
 .tipEnd { transform: translate(-100%, calc(-100% - 8px)); }

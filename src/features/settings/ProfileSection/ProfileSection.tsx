@@ -1,3 +1,4 @@
+import { UserRound } from "lucide-react";
 import { useId } from "react";
 import type { ActivityType, UrssafFrequency } from "../../../domain/model.types";
 import { Card } from "../../../components/Card";
@@ -18,7 +19,7 @@ export function ProfileSection() {
   const other = profile.otherIncomeByYear[String(year)] ?? 0;
 
   return (
-    <Card title="Profil">
+    <Card icon={UserRound} title="Profil">
       <div className={styles.grid}>
         <Field label="Activité" htmlFor={`${uid}-act`} className={styles.wide}>
           <select id={`${uid}-act`} value={profile.activity} onChange={(e) => update({ activity: e.target.value as ActivityType, rateOverrides: {} })}>

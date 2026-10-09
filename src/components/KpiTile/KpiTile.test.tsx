@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { Wallet } from "lucide-react";
 import { describe, expect, it } from "vitest";
 import { KpiTile } from "./KpiTile";
 
@@ -8,5 +9,12 @@ describe("KpiTile", () => {
     expect(screen.getByText("Encaissé 2026")).toBeInTheDocument();
     expect(screen.getByText("12 000 €")).toHaveClass("num");
     expect(screen.getByText("aucun prévu")).toBeInTheDocument();
+  });
+
+  it("shows an icon badge only when an icon is given", () => {
+    const { container, rerender } = render(<KpiTile label="A" value="1" />);
+    expect(container.querySelector("svg")).toBeNull();
+    rerender(<KpiTile label="A" value="1" icon={Wallet} />);
+    expect(container.querySelector("svg")).not.toBeNull();
   });
 });

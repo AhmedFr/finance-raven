@@ -1,3 +1,4 @@
+import { Scale } from "lucide-react";
 import type { IrCardProps } from "./IrCard.types";
 import { Card } from "../../../components/Card";
 import { Toggle } from "../../../components/Toggle";
@@ -9,7 +10,7 @@ import styles from "./IrCard.module.css";
 export function IrCard({ year, today, stats, comparison, vfl, vflRate, vflDeadline, irPaid, cfePaid, onToggle }: IrCardProps) {
   const advice = irAdvice({ year, ca: stats.ca, vfl, vflDeadline, today, ...comparison });
   return (
-    <Card title={`Impôt sur le revenu ${year}`}>
+    <Card icon={Scale} title={`Impôt sur le revenu ${year}`}>
       <div className={styles.compare}>
         <div className={cx(styles.option, comparison.best === "bareme" && styles.best)}>
           <span className={styles.eyebrow}>Barème progressif{!vfl ? " · actif" : ""}</span>

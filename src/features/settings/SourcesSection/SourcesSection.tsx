@@ -1,3 +1,4 @@
+import { Building2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../../../components/Button";
 import { Card } from "../../../components/Card";
@@ -20,7 +21,7 @@ export function SourcesSection() {
   };
 
   return (
-    <Card title="Sources">
+    <Card icon={Building2} title="Sources">
       <p className={styles.lede}>Clients et plateformes. La devise et le pays pré-remplissent les nouveaux encaissements.</p>
       {sources.map((s) => (
         <SourceRow key={s.id} source={s} onChange={(patch) => updateSource(s.id, patch)} onDelete={() => remove(s.id)} />

@@ -6,6 +6,7 @@ import styles from "./MonthlyChartCard.module.css";
 export function MonthlyChartCard({ year, series }: MonthlyChartCardProps) {
   return (
     <Card
+      tone="white"
       title={`Mois par mois · ${year}`}
       action={
         <div className={styles.legend}>

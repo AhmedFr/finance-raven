@@ -1,6 +1,6 @@
 .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--ink-2); }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
 .legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
-.net { background: var(--lime); border: 1px solid var(--lime-ink); }
+.net { background: var(--lime); }
 .reserve { background: var(--ink); }
 .planned { background: var(--ink); opacity: 0.35; }

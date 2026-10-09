@@ -1,8 +1,10 @@
-.details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
-.summary { cursor: pointer; font: 800 20px var(--font-display); list-style: none; display: flex; justify-content: space-between; min-height: 44px; align-items: center; }
+.details { background: var(--surface-2); border-radius: var(--radius); padding: var(--card-pad); }
+.summary { cursor: pointer; font: 500 18px var(--font-display); list-style: none; display: flex; justify-content: space-between; min-height: 44px; align-items: center; }
 .summary::-webkit-details-marker { display: none; }
+.heading { display: inline-flex; align-items: center; gap: 10px; }
 .summary::after { content: "+"; font-family: var(--font-mono); }
-.details[open] .summary::after { content: "−"; }
+.details[open] .heading { display: inline-flex; align-items: center; gap: 10px; }
+.summary::after { content: "−"; }
 .details[open] .summary { margin-bottom: 12px; }
 .grid { display: grid; gap: 14px; margin: 12px 0; }
 .item { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }

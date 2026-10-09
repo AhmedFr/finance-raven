@@ -1,2 +1,2 @@
-.grid { display: grid; gap: 20px; }
+.grid { display: grid; gap: var(--section-gap); }
 @media (min-width: 980px) { .grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } }

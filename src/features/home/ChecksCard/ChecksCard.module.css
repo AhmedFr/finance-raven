@@ -1,4 +1,6 @@
 .list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
-.item { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; }
+.item { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; }
+.badge { width: 32px; height: 32px; border-radius: 8px; background: var(--surface); display: grid; place-items: center; }
+.head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
 .body { color: var(--ink-2); font-size: 14px; }
 .empty { color: var(--ink-2); }

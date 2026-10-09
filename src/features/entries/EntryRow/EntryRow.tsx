@@ -12,8 +12,11 @@ export function EntryRow({ entry, calc, sourceName, onOpen }: EntryRowProps) {
   return (
     <button type="button" className={cx(styles.row, entry.status === "prevu" && styles.planned)} onClick={onOpen}>
       <span className={styles.who}>
-        <strong>{sourceName}</strong>
-        {entry.label && <span className={styles.sub}>{entry.label}</span>}
+        <span className={styles.avatar} aria-hidden="true">{sourceName.trim().charAt(0).toUpperCase()}</span>
+        <span className={styles.names}>
+          <strong>{sourceName}</strong>
+          {entry.label && <span className={styles.sub}>{entry.label}</span>}
+        </span>
       </span>
       <span className={styles.amount}>
         <span className="num">{formatEur(calc.eur)}</span>

@@ -1,3 +1,4 @@
+import { CHECK_ICONS } from "./ChecksCard.constants";
 import type { ChecksCardProps } from "./ChecksCard.types";
 import { Card } from "../../../components/Card";
 import { Pill } from "../../../components/Pill";
@@ -12,12 +13,18 @@ export function ChecksCard({ year, checks }: ChecksCardProps) {
         <p className={styles.empty}>Rien à signaler pour {year}.</p>
       ) : (
         <ul className={styles.list}>
-          {checks.map((c) => (
-            <li key={c.id} className={styles.item}>
-              <Pill tone={c.tone}>{TONE_LABEL[c.tone]}</Pill>
-              <div><strong>{c.title}</strong><p className={styles.body}>{c.body}</p></div>
-            </li>
-          ))}
+          {checks.map((c) => {
+            const Icon = CHECK_ICONS[c.id];
+            return (
+              <li key={c.id} className={styles.item}>
+                <span className={styles.badge}><Icon size={16} aria-hidden="true" /></span>
+                <div>
+                  <div className={styles.head}><strong>{c.title}</strong><Pill tone={c.tone}>{TONE_LABEL[c.tone]}</Pill></div>
+                  <p className={styles.body}>{c.body}</p>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       )}
     </Card>

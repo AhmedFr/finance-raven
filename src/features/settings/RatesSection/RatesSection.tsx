@@ -1,3 +1,4 @@
+import { SlidersHorizontal } from "lucide-react";
 import { Button } from "../../../components/Button";
 import { getPreset, getRates } from "../../../domain/rules/rules";
 import { useAppStore } from "../../../store/appStore";
@@ -12,7 +13,7 @@ export function RatesSection() {
   const rates = getRates(profile);
   return (
     <details className={styles.details}>
-      <summary className={styles.summary}>Taux avancés</summary>
+      <summary className={styles.summary}><span className={styles.heading}><SlidersHorizontal size={18} aria-hidden="true" />Taux avancés</span></summary>
       <p className={styles.note}>Préréglés pour « {preset.label} » (2026). Ne les change que si l'URSSAF t'applique un autre taux.</p>
       <div className={styles.grid}>
         {RATE_FIELDS.map(({ key, label }) => (

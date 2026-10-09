@@ -2,7 +2,7 @@
 .lede { color: var(--ink-2); }
 .row {
   display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end;
-  padding: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
+  padding: 12px; border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface);
 }
 .name { grid-column: 1 / -1; }
 .remove { padding: 0 12px; }

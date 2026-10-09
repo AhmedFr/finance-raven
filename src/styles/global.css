@@ -9,7 +9,7 @@ body {
   font: 400 15px/1.5 var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3 { font-family: var(--font-display); font-weight: 800; margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
 p { margin: 0; }
 a { color: inherit; }
 .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
@@ -24,6 +24,7 @@ input, select {
   min-width: 0;
   min-height: 44px;
 }
+input:focus, select:focus { border-color: var(--ink-3); box-shadow: 0 0 0 3px var(--lime-soft); }
 input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible, summary:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 2px;

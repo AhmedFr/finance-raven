@@ -1,3 +1,4 @@
+import { Gauge as GaugeIcon } from "lucide-react";
 import type { ThresholdsCardProps } from "./ThresholdsCard.types";
 import { Card } from "../../../components/Card";
 import { Gauge } from "../../../components/Gauge";
@@ -10,7 +11,7 @@ export function ThresholdsCard({ year, ca, caFR, cap, tva, nextYearCa, isCreatio
   const capS = capStatus(cap > 0 ? ca / cap : 0);
   const tvaS = tvaStatus(caFR, tva);
   return (
-    <Card title="Seuils">
+    <Card icon={GaugeIcon} title="Seuils">
       <div className={styles.block}>
         <div className={styles.head}><h3>Plafond micro-entreprise</h3><Pill tone={capS.tone}>{capS.label}</Pill></div>
         <Gauge ratio={cap > 0 ? ca / cap : 0} label="Plafond micro-entreprise" />
