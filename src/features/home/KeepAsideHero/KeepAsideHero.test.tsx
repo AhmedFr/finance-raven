@@ -11,5 +11,13 @@ describe("KeepAsideHero", () => {
     expect(plain(screen.getByTestId("keep-total").textContent)).toBe("2 280 €");
     expect(screen.getByText("CFE")).toBeInTheDocument();
     expect(screen.getByText(/31 janv\. 2027/)).toBeInTheDocument();
+    expect(screen.getByText(/Prochain paiement URSSAF · Période en cours/)).toBeInTheDocument();
+    expect(plain(document.body.textContent)).toContain("1 780 €");
+    expect(plain(document.body.textContent)).toMatch(/\+ 1 796 € prévu/);
+  });
+
+  it("shows no payment row without a next due", () => {
+    render(<KeepAsideHero keep={{ total: 500, urssaf: 0, ir: 0, irYears: [], cfe: 500, nextDue: null }} vfl={false} nextDueStatus={null} />);
+    expect(screen.queryByText(/Prochain paiement/)).not.toBeInTheDocument();
   });
 });

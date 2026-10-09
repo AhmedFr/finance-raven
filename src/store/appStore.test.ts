@@ -74,4 +74,11 @@ describe("appStore", () => {
     expect(s.onboarded).toBe(true);
     expect(s.paid).toEqual({ urssaf: {}, ir: {}, cfe: {} });
   });
+
+  it("rehydrates when another tab writes the storage key", () => {
+    const next = { state: { ...initialState("2026-10-09"), onboarded: true }, version: 1 };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    window.dispatchEvent(new StorageEvent("storage", { key: STORAGE_KEY }));
+    expect(store().onboarded).toBe(true);
+  });
 });

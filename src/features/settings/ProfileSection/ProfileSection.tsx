@@ -26,10 +26,10 @@ export function ProfileSection() {
             {ACTIVITY_ORDER.map((a) => <option key={a} value={a}>{ACTIVITY_PRESETS[a].label}</option>)}
           </select>
         </Field>
-        <Field label="Date de création" htmlFor={`${uid}-date`}>
+        <Field label="Date de création" hint="Changer ce réglage peut remettre à zéro les cases « payé » URSSAF." htmlFor={`${uid}-date`}>
           <input id={`${uid}-date`} type="date" value={profile.creationDate} onChange={(e) => e.target.value && update({ creationDate: e.target.value })} />
         </Field>
-        <Field label="Déclaration URSSAF" htmlFor={`${uid}-freq`}>
+        <Field label="Déclaration URSSAF" hint="Changer ce réglage peut remettre à zéro les cases « payé » URSSAF." htmlFor={`${uid}-freq`}>
           <select id={`${uid}-freq`} value={profile.urssafFrequency} onChange={(e) => update({ urssafFrequency: e.target.value as UrssafFrequency })}>
             {FREQUENCIES.map((f) => <option key={f} value={f}>{FR.frequencies[f]}</option>)}
           </select>

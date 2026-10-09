@@ -23,13 +23,13 @@ export function UrssafCard({ year, frequency, rows, onTogglePaid }: UrssafCardPr
               <div className={styles.what}>
                 <strong>{label}</strong>
                 <span className={styles.sub}>
-                  {p.first ? "1re déclaration (création + 3 mois)" : `CA déclaré ${formatEur(p.ca)}`}
+                  {p.first ? "1re déclaration (création + 3 mois) · " : ""}CA déclaré {formatEur(p.ca)}
                   {p.plannedCount ? ` · ${p.plannedCount} prévu${p.plannedCount > 1 ? "s" : ""}` : ""}
                 </span>
               </div>
               <div className={styles.amount}>
                 <span className="num">{formatEur(p.amount)}</span>
-                <span className={styles.sub}>sur {formatEur(p.ca)} de CA</span>
+                <span className={styles.sub}>cotisations + CFP</span>
               </div>
               <div className={styles.due}>
                 <span className={styles.sub}>Limite</span>

@@ -17,3 +17,4 @@
   .hero { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: center; padding: 32px; }
   .next { grid-column: 1 / -1; }
 }
+.planned { color: var(--ink-3); }

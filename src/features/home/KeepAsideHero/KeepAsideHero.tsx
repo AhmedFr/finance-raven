@@ -26,8 +26,11 @@ export function KeepAsideHero({ keep, vfl, nextDueStatus }: KeepAsideHeroProps) 
       </ul>
       {keep.nextDue && (
         <div className={styles.next}>
-          <Pill tone={tone}>Prochain paiement URSSAF</Pill>
-          <span className="num">{formatEur(keep.nextDue.amount)}</span>
+          <Pill tone={tone}>Prochain paiement URSSAF{nextDueStatus ? ` · ${nextDueStatus.label}` : ""}</Pill>
+          <span className="num">{formatEur(keep.nextDue.amountRecu)}</span>
+          {keep.nextDue.amount > keep.nextDue.amountRecu && (
+            <span className={styles.planned}>+ <span className="num">{formatEur(keep.nextDue.amount - keep.nextDue.amountRecu)}</span> prévu</span>
+          )}
           <span>au plus tard le {formatDay(keep.nextDue.due)}</span>
         </div>
       )}

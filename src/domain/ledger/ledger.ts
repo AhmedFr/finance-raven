@@ -35,7 +35,7 @@ export function createLedger(profile: Profile, entries: Entry[]): Ledger {
     const irBareme = Math.max(0, bareme(taxableIncome + other, parts) - bareme(other, parts));
     const irVfl = (ca * rates.vflRate) / 100;
     const ir = profile.versementLiberatoire ? irVfl : irBareme;
-    const hasActivity = yearEntries.length > 0; // zero-revenue years are exempt from the CFE minimum
+    const hasActivity = yearEntries.length > 0; // CFE is only counted for post-creation years with at least one entry
     const cfe = year > creationYear && hasActivity ? profile.cfePerYear : 0;
     const stats: YearStats = {
       year, entries: yearEntries, ca, caRecu, caFR, social, cfp, irBareme, irVfl, ir, cfe, other,

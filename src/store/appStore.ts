@@ -55,3 +55,9 @@ export const useAppStore = create<AppStore>()(
     },
   ),
 );
+
+if (typeof window !== "undefined") {
+  window.addEventListener("storage", (e) => {
+    if (e.key === STORAGE_KEY) void useAppStore.persist.rehydrate();
+  });
+}
