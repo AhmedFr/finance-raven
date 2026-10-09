@@ -4,6 +4,6 @@
 }
 .btn {
   border: 0; background: transparent; color: var(--ink-2); font: 500 14px var(--font-mono);
-  padding: 6px 12px; border-radius: 999px; cursor: pointer; min-height: 36px;
+  padding: 6px 12px; border-radius: 999px; cursor: pointer; min-height: 44px;
 }
 .btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); }

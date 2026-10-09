@@ -12,6 +12,11 @@ describe("Gauge", () => {
     expect(screen.getByRole("meter")).toHaveAttribute("aria-valuenow", "0");
     expect(container.innerHTML).not.toContain("NaN");
   });
+  it("ignores a NaN marker without rendering NaN", () => {
+    const { container } = render(<Gauge ratio={0.5} markerRatio={Number.NaN} label="Marqueur" />);
+    expect(container.querySelector(".marker")).toBeNull();
+    expect(container.innerHTML).not.toContain("NaN");
+  });
   it("uses the warn class near the limit", () => {
     const { container } = render(<Gauge ratio={0.9} label="x" />);
     expect(container.querySelector(".warn")).not.toBeNull();
