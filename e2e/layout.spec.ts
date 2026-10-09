@@ -26,7 +26,7 @@ test("entry drawer date input matches the other inputs", async ({ page }) => {
 test("settings creation date input matches the next input", async ({ page }) => {
   await page.goto("/reglages");
   const date = await box(page.getByLabel("Date de création"));
-  const next = await box(page.getByLabel("Déclaration URSSAF"));
+  const next = await box(page.getByRole("combobox", { name: /Déclaration URSSAF/ }));
   expect(Math.abs(date.height - next.height)).toBeLessThanOrEqual(2);
   const viewport = page.viewportSize();
   expect(date.x + date.width).toBeLessThanOrEqual(viewport?.width ?? Infinity);
