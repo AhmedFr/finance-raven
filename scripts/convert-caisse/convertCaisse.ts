@@ -4,8 +4,8 @@ import type { CaisseDump, CaisseSettings } from "./convertCaisse.types";
 import { ACTIVITY_PRESETS, DEFAULT_FX_TO_EUR } from "../../src/domain/rules/rules.constants";
 
 const DEFAULTS: CaisseSettings = {
-  creationDate: "2026-09-15", freq: "mensuelle", usdEur: 0.87, acre: false, vfl: false, parts: 1,
-  cotisRate: 25.6, cfpRate: 0.2, vflRate: 2.2, otherIncome: {}, budget: 1700, cfe: 500,
+  creationDate: "2026-01-01", freq: "mensuelle", usdEur: 0.87, acre: false, vfl: false, parts: 1,
+  cotisRate: 25.6, cfpRate: 0.2, vflRate: 2.2, otherIncome: {}, budget: 2000, cfe: 500,
 };
 
 const zoneOf = (client?: string): ClientZone => (client === "FR" ? "FR" : "HORS_UE");
