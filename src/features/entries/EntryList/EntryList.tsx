@@ -3,11 +3,11 @@ import { formatEur } from "../../../domain/format/format";
 import { EntryRow } from "../EntryRow";
 import styles from "./EntryList.module.css";
 
-export function EntryList({ groups, ledger, sourceNames, onOpen }: EntryListProps) {
+export function EntryList({ groups, ledger, sourceNames, onOpen, groupRef }: EntryListProps) {
   return (
     <div className={styles.list}>
       {groups.map((g) => (
-        <section key={g.monthIndex} className={styles.group} aria-label={g.label}>
+        <section key={g.monthIndex} ref={groupRef?.(g.monthIndex)} className={styles.group} aria-label={g.label}>
           <header className={styles.head}>
             <h2 className={styles.month}>{g.label}</h2>
             <span className="num">{formatEur(g.total)}</span>

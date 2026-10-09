@@ -11,7 +11,7 @@ export interface EntryGroup {
 
 export function groupEntriesByMonth(entries: Entry[], year: number, eurOf: (e: Entry) => number): EntryGroup[] {
   const groups = new Map<number, EntryGroup>();
-  const sorted = entries.filter((e) => yearOf(e.date) === year).sort((a, b) => b.date.localeCompare(a.date));
+  const sorted = entries.filter((e) => yearOf(e.date) === year).sort((a, b) => a.date.localeCompare(b.date));
   for (const e of sorted) {
     const i = monthIndexOfIso(e.date);
     const g = groups.get(i) ?? { monthIndex: i, label: formatMonth(i), total: 0, entries: [] };
@@ -19,5 +19,5 @@ export function groupEntriesByMonth(entries: Entry[], year: number, eurOf: (e: E
     g.total += eurOf(e);
     groups.set(i, g);
   }
-  return [...groups.values()];
+  return [...groups.values()].sort((a, b) => a.monthIndex - b.monthIndex);
 }

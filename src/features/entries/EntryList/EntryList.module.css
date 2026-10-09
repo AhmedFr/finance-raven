@@ -1,5 +1,5 @@
 .list { display: flex; flex-direction: column; gap: var(--section-gap); padding-bottom: 88px; }
-.group { display: flex; flex-direction: column; gap: 10px; }
+.group { scroll-margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
 .head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
 .month { font-size: 18px; text-transform: capitalize; }
 .items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }

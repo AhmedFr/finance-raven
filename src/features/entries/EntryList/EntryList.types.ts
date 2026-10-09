@@ -6,4 +6,5 @@ export interface EntryListProps {
   ledger: Ledger;
   sourceNames: Map<string, string>;
   onOpen: (id: string) => void;
+  groupRef?: (monthIndex: number) => (node: HTMLElement | null) => void;
 }

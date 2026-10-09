@@ -10,6 +10,7 @@ import { useAppStore } from "../../../store/appStore";
 import { EntryList } from "../EntryList";
 import { EntrySheet } from "../EntrySheet";
 import { groupEntriesByMonth } from "../groupEntries";
+import { useScrollToCurrentMonth } from "../useScrollToCurrentMonth";
 import styles from "./EntriesScreen.module.css";
 
 export function EntriesScreen() {
@@ -18,6 +19,7 @@ export function EntriesScreen() {
   const { year, years, setYear, today } = useSelectedYear();
   const [sheet, setSheet] = useState<SheetState>({ mode: "closed" });
   const groups = useMemo(() => groupEntriesByMonth(ledger.entries, year, ledger.eurOf), [ledger, year]);
+  const groupRef = useScrollToCurrentMonth(groups, year, today);
   const sourceNames = useMemo(() => new Map(sources.map((s) => [s.id, s.name])), [sources]);
   const close = useCallback(() => setSheet({ mode: "closed" }), []);
   const count = groups.reduce((n, g) => n + g.entries.length, 0);
@@ -29,7 +31,7 @@ export function EntriesScreen() {
       </ScreenHeader>
       <p className={styles.note}>Le chiffre d'affaires se déclare à la date où l'argent arrive, en euros.</p>
       {groups.length ? (
-        <EntryList groups={groups} ledger={ledger} sourceNames={sourceNames} onOpen={(id) => setSheet({ mode: "edit", id })} />
+        <EntryList groups={groups} groupRef={groupRef} ledger={ledger} sourceNames={sourceNames} onOpen={(id) => setSheet({ mode: "edit", id })} />
       ) : (
         <div className={styles.empty}>
           <p>Aucun encaissement en {year}.</p>
