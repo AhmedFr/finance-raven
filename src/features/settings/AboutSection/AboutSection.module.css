@@ -1,0 +1,2 @@
+.links { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.version { font: 12px var(--font-mono); color: var(--ink-2); }
