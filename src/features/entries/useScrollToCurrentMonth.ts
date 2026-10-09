@@ -11,7 +11,11 @@ export function useScrollToCurrentMonth(groups: EntryGroup[], year: number, toda
   const lastScrolledYear = useRef<number | null>(null);
 
   useEffect(() => {
-    if (year === lastScrolledYear.current || groups.length === 0) return;
+    if (groups.length === 0) {
+      lastScrolledYear.current = null;
+      return;
+    }
+    if (year === lastScrolledYear.current) return;
     lastScrolledYear.current = year;
     if (year !== yearOf(today)) return;
     const current = monthIndexOfIso(today);

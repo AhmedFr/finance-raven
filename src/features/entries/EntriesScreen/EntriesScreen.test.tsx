@@ -41,4 +41,15 @@ describe("EntriesScreen", () => {
     });
     expect(scrolled).toHaveLength(1);
   });
+
+  it("scrolls again when returning to a year after an empty one", () => {
+    useAppStore.setState({ profile: makeProfile({ creationDate: "2025-01-01" }) });
+    render(<MemoryRouter><EntriesScreen /></MemoryRouter>);
+    expect(scrolled).toHaveLength(1);
+    act(() => useAppStore.getState().setYear(2025));
+    expect(scrolled).toHaveLength(1);
+    act(() => useAppStore.getState().setYear(2026));
+    expect(scrolled).toHaveLength(2);
+    expect(scrolled[1].getAttribute("aria-label")).toBe("juin 2026");
+  });
 });

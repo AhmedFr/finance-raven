@@ -20,6 +20,11 @@ export function useDragToDismiss({ open, panelRef, backdropRef, onClose }: Optio
     drag.current = null;
   }, [open]);
 
+  const pendingCleanup = useRef<(() => void) | null>(null);
+  const cancelCleanup = () => {
+    pendingCleanup.current?.();
+    pendingCleanup.current = null;
+  };
   const clearInline = () => {
     const panel = panelRef.current;
     if (panel) {
@@ -37,12 +42,19 @@ export function useDragToDismiss({ open, panelRef, backdropRef, onClose }: Optio
     }
     panel.style.transition = "transform 0.2s ease-out";
     panel.style.transform = "translateY(0)";
-    panel.addEventListener("transitionend", clearInline, { once: true });
+    const onEnd = (e: TransitionEvent) => {
+      if (e.target !== panel) return;
+      cancelCleanup();
+      clearInline();
+    };
+    panel.addEventListener("transitionend", onEnd);
+    pendingCleanup.current = () => panel.removeEventListener("transitionend", onEnd);
   };
 
   const onPointerDown = (e: ReactPointerEvent<HTMLElement>) => {
     if (e.button > 0 || e.isPrimary === false) return;
     if ((e.target as HTMLElement).closest("button")) return;
+    cancelCleanup();
     e.currentTarget.setPointerCapture?.(e.pointerId);
     drag.current = { startY: e.clientY, startT: performance.now() };
   };

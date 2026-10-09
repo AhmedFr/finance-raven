@@ -1,3 +1,5 @@
+import { MIN_FLICK_PX } from "./Drawer.constants";
+
 const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
 export const getFocusables = (root: HTMLElement) => Array.from(root.querySelectorAll<HTMLElement>(FOCUSABLE));
@@ -24,7 +26,7 @@ export interface DismissInput {
 }
 
 /** A drag dismisses the drawer when it travelled far enough or was flicked fast enough. */
-export function shouldDismiss({ dy, elapsedMs, panelHeight, distancePx, ratio, velocity, minFlickPx = 10 }: DismissInput): boolean {
+export function shouldDismiss({ dy, elapsedMs, panelHeight, distancePx, ratio, velocity, minFlickPx = MIN_FLICK_PX }: DismissInput): boolean {
   if (dy <= 0) return false;
   if (dy > Math.min(distancePx, panelHeight * ratio)) return true;
   if (dy < minFlickPx) return false;
