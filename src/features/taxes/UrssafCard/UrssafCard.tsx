@@ -36,7 +36,7 @@ export function UrssafCard({ year, frequency, rows, onTogglePaid }: UrssafCardPr
               </div>
               <div className={styles.state}>
                 <Pill tone={status.tone}>{status.label}</Pill>
-                <Toggle checked={paid} onChange={(v) => onTogglePaid(p.key, v)} label="Payé" />
+                <Toggle checked={paid} onChange={(v) => onTogglePaid(p.key, v)} label="Payé" ariaLabel={`Payé · ${label}`} />
               </div>
             </li>
           ))}

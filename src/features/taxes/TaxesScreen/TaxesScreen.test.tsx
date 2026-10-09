@@ -7,6 +7,8 @@ import { useAppStore } from "../../../store/appStore";
 import { initialState } from "../../../store/defaults";
 import { TaxesScreen } from "./TaxesScreen";
 
+const truthyCount = () => Object.values(useAppStore.getState().paid.urssaf).filter(Boolean).length;
+
 beforeEach(() => {
   useAppStore.setState(initialState(todayIso()));
   useAppStore.getState().loadDemo(todayIso());
@@ -23,9 +25,10 @@ describe("TaxesScreen", () => {
 
   it("toggles a period as paid", async () => {
     render(<MemoryRouter><TaxesScreen /></MemoryRouter>);
-    const unpaid = screen.getAllByRole("switch", { name: "Payé" }).find((s) => !(s as HTMLInputElement).checked)!;
+    const unpaid = screen.getAllByRole("switch", { name: /^Payé/ }).find((s) => !(s as HTMLInputElement).checked)!;
+    const before = truthyCount();
     await userEvent.click(unpaid);
-    expect(Object.values(useAppStore.getState().paid.urssaf).filter(Boolean).length).toBeGreaterThan(0);
+    expect(truthyCount()).toBe(before + 1);
     expect(unpaid).toBeChecked();
   });
 });
