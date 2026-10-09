@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { BarChartProps } from "./BarChart.types";
 import { formatEur, MONTHS_SHORT } from "../../domain/format/format";
 import { CHART } from "./BarChart.constants";
-import { barSegments, buildScale, formatTick, totalOf } from "./BarChart.utils";
+import { barSegments, buildScale, formatTick, tooltipEdge, totalOf } from "./BarChart.utils";
 import { cx } from "../../lib/cx";
 import styles from "./BarChart.module.css";
 
@@ -20,7 +20,7 @@ export function BarChart({ data, year }: BarChartProps) {
   const ticks = Array.from({ length: Math.round(top / step) + 1 }, (_, i) => i * step);
   const hovered = hover != null && totals[hover] > 0 ? data[hover] : null;
   const leftPct = hover == null ? 0 : ((L + (hover + 0.5) * slot) / W) * 100;
-  const edge = hover == null ? "center" : hover < 2 ? "start" : hover > 9 ? "end" : "center";
+  const edge = hover == null ? "center" : tooltipEdge(hover);
   const tipClass = edge === "start" ? styles.tipStart : edge === "end" ? styles.tipEnd : undefined;
 
   return (

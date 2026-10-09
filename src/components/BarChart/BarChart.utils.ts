@@ -36,3 +36,5 @@ export function barSegments(point: MonthPoint, x: number, width: number, yOf: (v
     return { key: `${s.kind}-${s.part}`, className: s.className, opacity: s.opacity, path: roundTopPath(x, y, width, h, isTop ? Math.min(4, h) : 0) };
   });
 }
+
+export const tooltipEdge = (index: number): "start" | "center" | "end" => (index <= 3 ? "start" : index >= 8 ? "end" : "center");

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { barSegments, buildScale, formatTick, niceStep } from "./BarChart.utils";
+import { barSegments, buildScale, formatTick, niceStep, tooltipEdge } from "./BarChart.utils";
 
 const point = (rn: number, rr: number, pn = 0, pr = 0) => ({ month: 0, received: { net: rn, reserve: rr }, planned: { net: pn, reserve: pr } });
 
@@ -22,5 +22,8 @@ describe("BarChart utils", () => {
     expect(segs[1].path).toContain("Q");
     expect(segs[0].path).not.toContain("Q");
     expect(barSegments(point(0, 0), 10, 20, (v) => v)).toEqual([]);
+  });
+  it("anchors the tooltip by month index", () => {
+    expect([0, 3, 4, 7, 8, 11].map(tooltipEdge)).toEqual(["start", "start", "center", "center", "end", "end"]);
   });
 });
