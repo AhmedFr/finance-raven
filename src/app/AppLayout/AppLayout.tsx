@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import { TabDock } from "../../components/TabDock";
+import { UpdatePrompt } from "../../pwa/UpdatePrompt";
 import { StorageBanner } from "../../pwa/StorageBanner";
 import styles from "./AppLayout.module.css";
 
@@ -11,6 +12,7 @@ export function AppLayout() {
         <Outlet />
       </main>
       <TabDock />
+      <UpdatePrompt />
     </>
   );
 }
