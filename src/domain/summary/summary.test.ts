@@ -26,8 +26,11 @@ describe("keepAside", () => {
     expect(k.nextDue).toBeNull();
   });
   it("adds unpaid CFE for years after creation up to the current year", () => {
-    expect(keepAside(ledger, noPaid, [2026, 2027], 2027).cfe).toBe(500);
-    expect(keepAside(ledger, { ...noPaid, cfe: { "2027": true } }, [2026, 2027], 2027).cfe).toBe(0);
+    const active = createLedger(profile, [oct, nov, makeEntry({ date: "2027-02-01", amount: 1000 })]);
+    expect(keepAside(active, noPaid, [2026, 2027], 2027).cfe).toBe(500);
+    expect(keepAside(active, { ...noPaid, cfe: { "2027": true } }, [2026, 2027], 2027).cfe).toBe(0);
+    // 2027 has no activity in the 2026-only ledger, so the shared CFE rule charges nothing there.
+    expect(keepAside(ledger, noPaid, [2026, 2027], 2027).cfe).toBe(0);
   });
   it("adds the barème IR share of received money, per unpaid year", () => {
     const big = Array.from({ length: 6 }, (_, i) => makeEntry({ date: `2027-0${i + 1}-05`, amount: 10000 }));

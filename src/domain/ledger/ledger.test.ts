@@ -46,6 +46,10 @@ describe("yearStats", () => {
     expect([s.ca, s.reserve, s.irBareme, s.irVfl, s.social]).toEqual([0, 0, 0, 0, 0]);
   });
 
+  it("charges no CFE in a post-creation year without entries", () => {
+    expect(createLedger(profile, []).yearStats(2030).cfe).toBe(0);
+  });
+
   it("subtracts other income from the IR share", () => {
     const p = makeProfile({ otherIncomeByYear: { "2027": 30000 } });
     const s = createLedger(p, [makeEntry({ date: "2027-03-01", amount: 10000 })]).yearStats(2027);

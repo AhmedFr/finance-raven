@@ -16,10 +16,9 @@ export function keepAside(ledger: Ledger, paid: PaidFlags, years: number[], curr
       .reduce((sum, e) => sum + ledger.entryCalc(e).ir, 0);
     if (share > 0.5) { ir += share; irYears.push(y); }
   }
-  const creationYear = yearOf(ledger.profile.creationDate);
   let cfe = 0;
   for (const y of years) {
-    if (y > creationYear && y <= currentYear && !paid.cfe[String(y)]) cfe += ledger.profile.cfePerYear;
+    if (y <= currentYear && !paid.cfe[String(y)]) cfe += ledger.yearStats(y).cfe;
   }
   const nextDue = unpaid.filter((p) => p.amountRecu > 0).sort((a, b) => a.due.localeCompare(b.due))[0] ?? null;
   return { total: urssaf + ir + cfe, urssaf, ir, irYears, cfe, nextDue };
