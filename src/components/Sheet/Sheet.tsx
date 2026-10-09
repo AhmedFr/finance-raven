@@ -2,6 +2,7 @@ import { useEffect, useId, useRef } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import type { SheetProps } from "./Sheet.types";
+import { trapTabTarget } from "./Sheet.utils";
 import styles from "./Sheet.module.css";
 
 export function Sheet({ open, title, onClose, children }: SheetProps) {
@@ -16,7 +17,16 @@ export function Sheet({ open, title, onClose, children }: SheetProps) {
     const overflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     panelRef.current?.focus();
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onCloseRef.current(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onCloseRef.current();
+      if (e.key === "Tab" && panelRef.current) {
+        const target = trapTabTarget(panelRef.current, document.activeElement, e.shiftKey);
+        if (target) {
+          e.preventDefault();
+          target.focus();
+        }
+      }
+    };
     document.addEventListener("keydown", onKey);
     return () => {
       document.removeEventListener("keydown", onKey);
@@ -28,7 +38,7 @@ export function Sheet({ open, title, onClose, children }: SheetProps) {
   if (!open) return null;
   return createPortal(
     <div className={styles.root}>
-      <div className={styles.backdrop} onClick={onClose} aria-hidden="true" />
+      <div data-testid="sheet-backdrop" className={styles.backdrop} onClick={onClose} aria-hidden="true" />
       <div ref={panelRef} className={styles.panel} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1}>
         <header className={styles.header}>
           <h2 id={titleId} className={styles.title}>{title}</h2>

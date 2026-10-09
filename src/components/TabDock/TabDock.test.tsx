@@ -9,5 +9,6 @@ describe("TabDock", () => {
     expect(screen.getAllByRole("link")).toHaveLength(4);
     expect(screen.getByRole("link", { name: "Impôts" })).toHaveAttribute("aria-current", "page");
     expect(screen.getByRole("link", { name: "Accueil" })).not.toHaveAttribute("aria-current");
+    expect(screen.getByRole("navigation", { name: "Navigation principale" })).toBeInTheDocument();
   });
 });
