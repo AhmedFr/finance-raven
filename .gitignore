@@ -2,9 +2,10 @@ node_modules
 dist
 coverage
 .vercel
+*.local
 finance-raven-import*.json
+caisse-raw*.json
 storybook-static
 test-results
 playwright-report
-
 *storybook.log
