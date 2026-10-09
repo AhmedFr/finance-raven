@@ -10,3 +10,4 @@ test-results
 playwright-report
 *storybook.log
 .DS_Store
+.env*
