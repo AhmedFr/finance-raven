@@ -34,7 +34,7 @@ export function OnboardingScreen() {
       {step === 1 && <ProfileStep profile={draft.profile} onChange={draft.patchProfile} />}
       {step === 2 && <SourcesStep sources={draft.sources} onAdd={draft.addSource} onUpdate={draft.updateSource} onRemove={draft.removeSource} />}
       <div className={styles.nav}>
-        {step > 0 && <Button onClick={() => setStep(step - 1)}>Retour</Button>}
+        {step > 0 && <Button className={styles.back} onClick={() => setStep(step - 1)}>Retour</Button>}
         {isLast
           ? <Button variant="primary" onClick={finish}>Terminer</Button>
           : <Button variant="primary" onClick={() => setStep(step + 1)}>Continuer</Button>}

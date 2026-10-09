@@ -58,12 +58,12 @@ export function EntryForm(props: EntryFormProps) {
       </Field>
       {f.error && <p role="alert" className={styles.error}>{f.error}</p>}
       <div className={styles.actions}>
-        <Button type="submit" variant="primary">{props.initial ? "Enregistrer" : "Ajouter"}</Button>
-        {props.initial?.status === "prevu" && draft.status === "prevu" && <Button onClick={f.markReceived}>Marquer reçu</Button>}
-        <Button variant="ghost" onClick={props.onCancel}>Annuler</Button>
         {props.onDelete && (
           <Button variant="danger" onClick={f.requestDelete}>{f.armedDelete ? "Confirmer la suppression" : "Supprimer"}</Button>
         )}
+        {props.initial?.status === "prevu" && draft.status === "prevu" && <Button onClick={f.markReceived}>Marquer reçu</Button>}
+        <Button variant="ghost" onClick={props.onCancel}>Annuler</Button>
+        <Button type="submit" variant="primary">{props.initial ? "Enregistrer" : "Ajouter"}</Button>
       </div>
     </form>
   );

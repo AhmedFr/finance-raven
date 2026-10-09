@@ -1,13 +1,16 @@
 import { useEffect, useId, useRef } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
-import type { SheetProps } from "./Sheet.types";
-import { trapTabTarget } from "./Sheet.utils";
-import styles from "./Sheet.module.css";
+import type { DrawerProps } from "./Drawer.types";
+import { trapTabTarget } from "./Drawer.utils";
+import { useDragToDismiss } from "./useDragToDismiss";
+import styles from "./Drawer.module.css";
 
-export function Sheet({ open, title, onClose, children }: SheetProps) {
+export function Drawer({ open, title, onClose, children }: DrawerProps) {
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const dragHandlers = useDragToDismiss({ panelRef, backdropRef, onClose });
   const onCloseRef = useRef(onClose);
   useEffect(() => { onCloseRef.current = onClose; }, [onClose]);
 
@@ -38,15 +41,18 @@ export function Sheet({ open, title, onClose, children }: SheetProps) {
   if (!open) return null;
   return createPortal(
     <div className={styles.root}>
-      <div data-testid="sheet-backdrop" className={styles.backdrop} onClick={onClose} aria-hidden="true" />
+      <div ref={backdropRef} data-testid="drawer-backdrop" className={styles.backdrop} onClick={onClose} aria-hidden="true" />
       <div ref={panelRef} className={styles.panel} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1}>
+        <div className={styles.dragArea} data-drag-handle {...dragHandlers}>
+          <span className={styles.grabber} aria-hidden="true" />
         <header className={styles.header}>
           <h2 id={titleId} className={styles.title}>{title}</h2>
           <button type="button" className={styles.close} onClick={onClose} aria-label="Fermer">
             <X size={20} aria-hidden="true" />
           </button>
         </header>
-        {children}
+        </div>
+        <div className={styles.body}>{children}</div>
       </div>
     </div>,
     document.body,

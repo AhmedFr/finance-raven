@@ -12,6 +12,10 @@ test("README screenshots", async ({ page }) => {
   await page.goto("/encaissements");
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
   await page.screenshot({ path: "docs/screenshots/entries-mobile.png" });
+  await page.goto("/encaissements");
+  await page.getByRole("button", { name: "Ajouter un encaissement" }).click();
+  await page.getByRole("dialog").waitFor();
+  await page.screenshot({ path: "docs/screenshots/entry-drawer-mobile.png" });
   await page.setViewportSize({ width: 1280, height: 860 });
   await page.goto("/");
   await page.screenshot({ path: "docs/screenshots/home-desktop.png" });

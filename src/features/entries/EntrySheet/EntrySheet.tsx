@@ -1,6 +1,6 @@
 import type { EntryFormValues } from "../EntryForm/EntryForm.types";
 import type { EntrySheetProps } from "./EntrySheet.types";
-import { Sheet } from "../../../components/Sheet";
+import { Drawer } from "../../../components/Drawer";
 import { useAppStore } from "../../../store/appStore";
 import { EntryForm } from "../EntryForm";
 
@@ -21,7 +21,7 @@ export function EntrySheet({ state, defaultDate, onClose }: EntrySheetProps) {
   };
 
   return (
-    <Sheet open={state.mode !== "closed"} title={editing ? "Modifier l'encaissement" : "Nouvel encaissement"} onClose={onClose}>
+    <Drawer open={state.mode !== "closed"} title={editing ? "Modifier l'encaissement" : "Nouvel encaissement"} onClose={onClose}>
       {state.mode !== "closed" && (
         <EntryForm
           key={editing?.id ?? "new"}
@@ -33,6 +33,6 @@ export function EntrySheet({ state, defaultDate, onClose }: EntrySheetProps) {
           onDelete={editing ? () => { removeEntry(editing.id); onClose(); } : undefined}
         />
       )}
-    </Sheet>
+    </Drawer>
   );
 }

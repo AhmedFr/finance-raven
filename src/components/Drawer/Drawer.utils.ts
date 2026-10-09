@@ -12,3 +12,23 @@ export function trapTabTarget(panel: HTMLElement, active: Element | null, shiftK
   if (!shiftKey && active === last) return first;
   return null;
 }
+
+export interface DismissInput {
+  dy: number;
+  elapsedMs: number;
+  panelHeight: number;
+  distancePx: number;
+  ratio: number;
+  velocity: number;
+}
+
+/** A drag dismisses the drawer when it travelled far enough or was flicked fast enough. */
+export function shouldDismiss({ dy, elapsedMs, panelHeight, distancePx, ratio, velocity }: DismissInput): boolean {
+  if (dy <= 0) return false;
+  if (dy > Math.min(distancePx, panelHeight * ratio)) return true;
+  return dy / Math.max(elapsedMs, 1) > velocity;
+}
+
+/** Backdrop opacity while the panel is dragged down by dy. */
+export const backdropOpacity = (dy: number, panelHeight: number, fade: number) =>
+  1 - Math.min(dy / Math.max(panelHeight, 1), 1) * fade;
