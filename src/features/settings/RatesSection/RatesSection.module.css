@@ -1,5 +1,5 @@
 .details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
-.summary { cursor: pointer; font: 800 20px var(--font-display); list-style: none; display: flex; justify-content: space-between; }
+.summary { cursor: pointer; font: 800 20px var(--font-display); list-style: none; display: flex; justify-content: space-between; min-height: 44px; align-items: center; }
 .summary::-webkit-details-marker { display: none; }
 .summary::after { content: "+"; font-family: var(--font-mono); }
 .details[open] .summary::after { content: "−"; }

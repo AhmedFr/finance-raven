@@ -15,8 +15,8 @@ export function BackupSection() {
   );
   const exportNow = async () => {
     const now = new Date();
-    await saveFile(`finance-raven-${todayIso(now)}.json`, serializeBackup({ profile, sources, entries, paid }, now));
-    markExported(now.toISOString());
+    const saved = await saveFile(`finance-raven-${todayIso(now)}.json`, serializeBackup({ profile, sources, entries, paid }, now));
+    if (saved) markExported(now.toISOString());
   };
   return (
     <Card title="Sauvegarde">
