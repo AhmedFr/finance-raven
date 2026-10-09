@@ -1,0 +1,19 @@
+.hero {
+  background: var(--lime); color: var(--lime-ink); border: 1px solid var(--lime-ink); border-radius: 20px;
+  padding: 22px; display: grid; gap: 18px;
+}
+.main { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.eyebrow { font: 700 12px var(--font-body); text-transform: uppercase; letter-spacing: 0.1em; }
+.amount {
+  font: 800 clamp(52px, 15vw, 96px)/0.95 var(--font-display); letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums; overflow-wrap: anywhere;
+}
+.lede { max-width: 42ch; font-size: 14px; }
+.list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.list li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgb(17 17 17 / 0.25); }
+.list li:last-child { border-bottom: 0; }
+.next { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; }
+@media (min-width: 820px) {
+  .hero { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: center; padding: 28px; }
+  .next { grid-column: 1 / -1; }
+}
