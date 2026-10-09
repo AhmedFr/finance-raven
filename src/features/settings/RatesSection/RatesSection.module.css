@@ -3,8 +3,7 @@
 .summary::-webkit-details-marker { display: none; }
 .heading { display: inline-flex; align-items: center; gap: 10px; }
 .summary::after { content: "+"; font-family: var(--font-mono); }
-.details[open] .heading { display: inline-flex; align-items: center; gap: 10px; }
-.summary::after { content: "−"; }
+.details[open] .summary::after { content: "−"; }
 .details[open] .summary { margin-bottom: 12px; }
 .grid { display: grid; gap: 14px; margin: 12px 0; }
 .item { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }

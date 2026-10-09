@@ -7,7 +7,7 @@
   --ink-3: #6E6A68;
   --line: rgba(33, 33, 33, 0.1);
   --line-soft: rgba(33, 33, 33, 0.06);
-  --chip: #F4F2F0;
+  --chip: #E8E5E1;
   --lime: #E4F222;
   --lime-soft: #F5FF78;
   --lime-ink: #0C0A08;
@@ -39,7 +39,7 @@
   :root {
     --bg: #121210; --surface: #1F1F1D; --surface-2: #262624;
     --ink: #F4F2F0; --ink-2: rgba(244, 242, 240, 0.6); --ink-3: #A39E99;
-    --line: rgba(255, 255, 255, 0.1); --line-soft: rgba(255, 255, 255, 0.06); --chip: #262624;
+    --line: rgba(255, 255, 255, 0.1); --line-soft: rgba(255, 255, 255, 0.06); --chip: #34332F;
     --dark: #F4F2F0; --on-dark: #0C0A08;
     --good: #5CC28D; --good-soft: #16301F; --warn: #E8B04B; --warn-soft: #352812; --crit: #F08A82; --crit-soft: #3A1C1A;
     --dock-bg: #262624; --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.5);
