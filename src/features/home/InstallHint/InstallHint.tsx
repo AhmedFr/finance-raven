@@ -13,9 +13,12 @@ export function InstallHint() {
   return (
     <Card tone="white" icon={Smartphone} title="Installer finance-raven" action={<Button size="sm" variant="ghost" onClick={dismiss}>Plus tard</Button>}>
       {ios ? (
-        <p>Dans Safari, touche <strong>Partager</strong> puis <strong>« Sur l'écran d'accueil »</strong>. L'app s'ouvre en plein écran et marche hors ligne.</p>
+        <p>Dans Safari, touche <strong>Partager</strong> puis <strong>« Sur l'écran d'accueil »</strong>. L'app s'ouvre en plein écran et marche hors ligne. Installe l'app d'abord : les données saisies dans Safari ne sont pas reprises par l'app installée (exporte/importe une sauvegarde si besoin).</p>
       ) : (
-        <div><Button variant="primary" onClick={prompt}>Installer l'app</Button></div>
+        <div>
+          <p>Installe l'app d'abord : les données saisies dans Safari ne sont pas reprises par l'app installée (exporte/importe une sauvegarde si besoin).</p>
+          <Button variant="primary" onClick={prompt}>Installer l'app</Button>
+        </div>
       )}
     </Card>
   );

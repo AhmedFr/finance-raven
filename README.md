@@ -29,6 +29,8 @@ Partager le lien ne partage que l'app. Exporte une sauvegarde JSON de temps en t
 - **iPhone (Safari)** : ouvre le lien, touche Partager, puis « Sur l'écran d'accueil ».
 - **Android (Chrome)** : menu ⋮, puis « Installer l'application ».
 
+Installe d'abord, puis saisis ou importe tes données dans l'app installée (sur iPhone, Safari et l'app installée ont des stockages séparés).
+
 Une fois installée, l'app fonctionne hors ligne.
 
 ## Développement
