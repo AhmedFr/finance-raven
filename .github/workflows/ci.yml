@@ -20,7 +20,7 @@ jobs:
       - run: pnpm test
       - run: pnpm build
       - run: pnpm build-storybook --quiet
-      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm exec playwright install --with-deps chromium webkit
       - run: pnpm e2e
         env:
           CI: "true"
