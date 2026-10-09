@@ -24,4 +24,10 @@ describe("draftToValues", () => {
     expect(draftToValues({ ...base, sourceId: NEW_SOURCE })).toEqual({ error: "Donne un nom à la nouvelle source." });
     expect(draftToValues({ ...base, sourceId: NEW_SOURCE, newSourceName: " Acme " })).toMatchObject({ sourceId: "", newSourceName: "Acme" });
   });
+  it("rejects an unparsable or negative EUR received amount for foreign currencies", () => {
+    const err = { error: "Indique un montant reçu en € valide (ou laisse vide)." };
+    expect(draftToValues({ ...base, eurReceived: "abc" })).toEqual(err);
+    expect(draftToValues({ ...base, eurReceived: "-5" })).toEqual(err);
+    expect(draftToValues({ ...base, eurReceived: "" })).toMatchObject({ eurReceived: null });
+  });
 });

@@ -26,9 +26,12 @@ export function draftToValues(d: EntryDraft): EntryFormValues | { error: string 
   const isNew = d.sourceId === NEW_SOURCE;
   if (isNew && !d.newSourceName.trim()) return { error: "Donne un nom à la nouvelle source." };
   const eur = d.currency === "EUR" ? null : toNullableNumber(d.eurReceived);
+  if (d.currency !== "EUR" && d.eurReceived.trim() !== "" && (eur == null || eur < 0)) {
+    return { error: "Indique un montant reçu en € valide (ou laisse vide)." };
+  }
   return {
     date: d.date, sourceId: isNew ? "" : d.sourceId, label: d.label.trim(), amount, currency: d.currency,
-    eurReceived: eur != null && eur >= 0 ? eur : null, status: d.status, zone: d.zone,
+    eurReceived: eur, status: d.status, zone: d.zone,
     ...(isNew ? { newSourceName: d.newSourceName.trim() } : {}),
   };
 }

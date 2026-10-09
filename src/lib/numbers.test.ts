@@ -19,3 +19,10 @@ describe("toNullableNumber", () => {
     expect(toNullableNumber("870")).toBe(870);
   });
 });
+
+describe("French number formats", () => {
+  it.each([
+    ["1 500", 1500], ["1 500", 1500], ["1 500", 1500], ["1 234,56", 1234.56],
+    ["1.234,56", 1234.56], ["1,234.56", 1234.56], ["25,6", 25.6], ["abc", null], ["", null],
+  ])("parses %j", (raw, expected) => expect(toNullableNumber(raw)).toBe(expected));
+});
