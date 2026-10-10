@@ -11,4 +11,11 @@ describe("EntryRow", () => {
     expect(screen.getByText("A")).toBeInTheDocument();
     expect(screen.getByText("acme")).toBeInTheDocument();
   });
+  it("shows Net, URSSAF and IR as badges", () => {
+    render(<EntryRow entry={entry} calc={calc} sourceName="acme" onOpen={() => {}} />);
+    const badge = (label: string) => (screen.getByText(label).parentElement?.textContent ?? "").replace(/\s/g, "");
+    expect(badge("Net")).toBe("Net788€");
+    expect(badge("URSSAF")).toBe("URSSAF212€");
+    expect(badge("IR")).toBe("IR0€");
+  });
 });

@@ -1,4 +1,6 @@
+import { HandCoins, Landmark, Receipt } from "lucide-react";
 import type { EntryRowProps } from "./EntryRow.types";
+import { AmountBadge } from "../../../components/AmountBadge";
 import { Pill } from "../../../components/Pill";
 import { formatDay, formatEur, formatMoney } from "../../../domain/format/format";
 import { FR } from "../../../i18n/fr";
@@ -6,8 +8,6 @@ import { cx } from "../../../lib/cx";
 import styles from "./EntryRow.module.css";
 
 export function EntryRow({ entry, calc, sourceName, onOpen }: EntryRowProps) {
-  const reserve = calc.urssaf + calc.ir;
-  const reserveRatio = calc.eur > 0 ? reserve / calc.eur : 0;
   const estimated = entry.currency !== "EUR" && entry.eurReceived == null;
   return (
     <button type="button" className={cx(styles.row, entry.status === "prevu" && styles.planned)} onClick={onOpen}>
@@ -24,12 +24,10 @@ export function EntryRow({ entry, calc, sourceName, onOpen }: EntryRowProps) {
       </span>
       <span className={styles.date}>{formatDay(entry.date)}</span>
       <span className={styles.status}><Pill tone={entry.status === "recu" ? "good" : "neutral"}>{FR.status[entry.status]}</Pill></span>
-      <span className={styles.split}>
-        <span className={cx("num", styles.sub)}>URSSAF {formatEur(calc.urssaf)} · IR {formatEur(calc.ir)} · Net {formatEur(calc.net)}</span>
-        <span className={styles.bar} aria-hidden="true">
-          <span className={styles.barNet} style={{ flex: Math.max(0, 1 - reserveRatio) }} />
-          <span className={styles.barReserve} style={{ flex: reserveRatio }} />
-        </span>
+      <span className={styles.badges}>
+        <AmountBadge tone="net" icon={HandCoins} label="Net" value={formatEur(calc.net)} />
+        <AmountBadge icon={Landmark} label="URSSAF" value={formatEur(calc.urssaf)} />
+        <AmountBadge icon={Receipt} label="IR" value={formatEur(calc.ir)} />
       </span>
     </button>
   );
