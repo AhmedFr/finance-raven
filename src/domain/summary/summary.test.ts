@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { makeEntry, makeProfile } from "../testing/fixtures";
 import { createLedger } from "../ledger/ledger";
-import { availableYears, keepAside, monthlySeries } from "./summary";
+import { availableYears, keepAside, monthlySeries, netCumul } from "./summary";
 
 const profile = makeProfile({ creationDate: "2026-09-15" });
 const oct = makeEntry({ date: "2026-10-05", amount: 6900, status: "recu" });
@@ -48,6 +48,27 @@ describe("monthlySeries", () => {
     expect(s[9].received.net).toBeCloseTo(5119.8, 2);
     expect(s[10].planned.reserve).toBeCloseTo(1795.68, 2);
     expect(s[0]).toEqual({ month: 0, received: { net: 0, reserve: 0 }, planned: { net: 0, reserve: 0 } });
+  });
+});
+
+describe("netCumul", () => {
+  it("accumulates received net and the projection with planned entries", () => {
+    const c = netCumul(ledger, 2026);
+    const plannedNet = ledger.entryCalc(nov).net;
+    expect(c.points).toHaveLength(12);
+    expect(c.points[8]).toEqual({ month: 8, received: 0, projected: 0 });
+    expect(c.points[9].received).toBeCloseTo(5119.8, 2);
+    expect(c.points[10].received).toBeCloseTo(5119.8, 2);
+    expect(c.points[10].projected).toBeCloseTo(5119.8 + plannedNet, 2);
+    expect(c.points[11].projected).toBeCloseTo(5119.8 + plannedNet, 2);
+    expect(c.receivedTotal).toBeCloseTo(5119.8, 2);
+    expect(c.plannedTotal).toBeCloseTo(plannedNet, 2);
+    expect(c.projectedTotal).toBeCloseTo(5119.8 + plannedNet, 2);
+  });
+  it("is all zeros for an empty year", () => {
+    const c = netCumul(createLedger(profile, []), 2026);
+    expect(c.points.every((p) => p.received === 0 && p.projected === 0)).toBe(true);
+    expect([c.receivedTotal, c.plannedTotal, c.projectedTotal]).toEqual([0, 0, 0]);
   });
 });
 

@@ -1,6 +1,6 @@
 import type { Entry, PaidFlags, Profile } from "../model.types";
 import type { Ledger } from "../ledger/ledger.types";
-import type { KeepAside, MonthPoint } from "./summary.types";
+import type { CumulPoint, KeepAside, MonthPoint, NetCumul } from "./summary.types";
 import { parseIso, yearOf } from "../dates/dates";
 import { listPeriods } from "../urssaf/urssaf";
 
@@ -35,6 +35,24 @@ export function monthlySeries(ledger: Ledger, year: number): MonthPoint[] {
     bucket.reserve += c.urssaf + c.ir;
   }
   return points;
+}
+
+export function netCumul(ledger: Ledger, year: number): NetCumul {
+  const receivedByMonth = new Array<number>(12).fill(0);
+  const plannedByMonth = new Array<number>(12).fill(0);
+  for (const e of ledger.yearStats(year).entries) {
+    const target = e.status === "recu" ? receivedByMonth : plannedByMonth;
+    target[parseIso(e.date).m - 1] += ledger.entryCalc(e).net;
+  }
+  let received = 0;
+  let projected = 0;
+  const points: CumulPoint[] = receivedByMonth.map((r, month) => {
+    received += r;
+    projected += r + plannedByMonth[month];
+    return { month, received, projected };
+  });
+  const plannedTotal = plannedByMonth.reduce((a, b) => a + b, 0);
+  return { points, receivedTotal: received, plannedTotal, projectedTotal: received + plannedTotal };
 }
 
 export function availableYears(profile: Profile, entries: Entry[], today: string): number[] {

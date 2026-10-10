@@ -16,3 +16,12 @@ export interface MonthPoint {
   received: MonthSplit;
   planned: MonthSplit;
 }
+
+export interface CumulPoint { month: number; received: number; projected: number }
+
+export interface NetCumul {
+  points: CumulPoint[];
+  receivedTotal: number;
+  plannedTotal: number;
+  projectedTotal: number;
+}
