@@ -58,6 +58,10 @@ pnpm screenshots    # régénère les captures du README
 
 Stack : Vite, React, TypeScript, Zustand, zod, vite-plugin-pwa, CSS Modules, Vitest, Storybook, Playwright.
 
+## Contribuer
+
+Les corrections de taux et les signalements de bugs sont les bienvenus : voir [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Avertissement
 
 Ce sont des estimations indicatives, pas un conseil fiscal. Les taux 2026 viennent de sources publiques. Vérifie-les sur
