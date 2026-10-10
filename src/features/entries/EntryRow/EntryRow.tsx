@@ -25,9 +25,9 @@ export function EntryRow({ entry, calc, sourceName, onOpen }: EntryRowProps) {
       <span className={styles.date}>{formatDay(entry.date)}</span>
       <span className={styles.status}><Pill tone={entry.status === "recu" ? "good" : "neutral"}>{FR.status[entry.status]}</Pill></span>
       <span className={styles.badges}>
-        <AmountBadge tone="net" icon={HandCoins} label="Net" value={formatEur(calc.net)} />
-        <AmountBadge icon={Landmark} label="URSSAF" value={formatEur(calc.urssaf)} />
-        <AmountBadge icon={Receipt} label="IR" value={formatEur(calc.ir)} />
+        <AmountBadge layout="stacked" tone="net" icon={HandCoins} label="Net" value={formatEur(calc.net)} />
+        <AmountBadge layout="stacked" icon={Landmark} label="URSSAF" value={formatEur(calc.urssaf)} />
+        <AmountBadge layout="stacked" icon={Receipt} label="IR" value={formatEur(calc.ir)} />
       </span>
     </button>
   );

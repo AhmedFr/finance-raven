@@ -31,3 +31,12 @@ test("settings creation date input matches the next input", async ({ page }) => 
   const viewport = page.viewportSize();
   expect(date.x + date.width).toBeLessThanOrEqual(viewport?.width ?? Infinity);
 });
+
+test("entry badge tiles share one row at 360px", async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.goto("/encaissements");
+  const tiles = page.locator("li").first().getByTestId("amount-badge");
+  await expect(tiles).toHaveCount(3);
+  const ys = [await box(tiles.nth(0)), await box(tiles.nth(1)), await box(tiles.nth(2))].map((b) => b.y);
+  expect(Math.max(...ys) - Math.min(...ys)).toBeLessThanOrEqual(2);
+});

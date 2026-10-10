@@ -21,4 +21,9 @@ describe("AmountBadge", () => {
     expect(container.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
     expect(screen.queryByRole("button")).toBeNull();
   });
+  it("applies the stacked layout class and keeps label and value", () => {
+    const { container } = render(<AmountBadge label="Net" value="1 €" layout="stacked" />);
+    expect(container.firstElementChild).toHaveClass("stacked");
+    expect(container.firstElementChild).toHaveTextContent("Net 1 €");
+  });
 });

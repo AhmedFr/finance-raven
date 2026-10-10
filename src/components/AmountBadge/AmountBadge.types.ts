@@ -4,5 +4,6 @@ export interface AmountBadgeProps {
   label: string;
   value: string;
   icon?: LucideIcon;
+  layout?: "inline" | "stacked";
   tone?: "net" | "neutral";
 }

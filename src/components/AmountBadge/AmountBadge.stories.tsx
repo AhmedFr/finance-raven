@@ -8,3 +8,4 @@ type Story = StoryObj<typeof meta>;
 
 export const Net: Story = { args: { tone: "net", icon: HandCoins } };
 export const Neutral: Story = { args: { label: "URSSAF", value: "540 €", icon: Landmark } };
+export const Stacked: Story = { args: { tone: "net", icon: HandCoins, layout: "stacked" } };
