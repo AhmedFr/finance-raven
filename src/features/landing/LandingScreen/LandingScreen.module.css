@@ -1,0 +1,43 @@
+.main {
+  max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--section-gap);
+  padding: calc(20px + env(safe-area-inset-top)) var(--gutter) 0;
+}
+.brand { display: flex; align-items: center; gap: 10px; font: 500 16px var(--font-display); letter-spacing: -0.01em; }
+.brand img { border-radius: 7px; }
+
+.hero { display: grid; gap: 24px; }
+.copy { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.eyebrow { font: 500 12px var(--font-body); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); }
+.title {
+  margin: 0; font: 400 clamp(36px, 10vw, 60px) / 1.02 var(--font-display); letter-spacing: -0.035em; text-wrap: balance;
+}
+.lede { color: var(--ink-2); font-size: 16px; max-width: 40ch; text-wrap: pretty; }
+
+.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+.point { display: flex; gap: 14px; align-items: flex-start; }
+.icon {
+  flex: none; display: grid; place-items: center; width: 36px; height: 36px;
+  border-radius: var(--radius-sm); background: var(--chip); color: var(--ink);
+}
+.pointTitle { margin: 0 0 2px; font: 500 15px var(--font-body); }
+.pointText { color: var(--ink-2); font-size: 14px; max-width: 42ch; }
+
+.privacy {
+  display: flex; gap: 10px; align-items: flex-start; padding: 16px; border-radius: var(--radius);
+  background: var(--surface-2); font-size: 14px;
+}
+.privacy svg { flex: none; margin-top: 1px; }
+.disclaimer { margin-top: -16px; font-size: 12px; color: var(--ink-3); }
+
+.actions {
+  position: sticky; bottom: 0; z-index: 1; margin: 0 calc(-1 * var(--gutter));
+  padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom));
+  background: var(--bg); border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: flex-end;
+}
+.actions > :first-child { margin-right: auto; }
+
+@media (min-width: 820px) {
+  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); align-items: center; gap: 40px; }
+  .points { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+}

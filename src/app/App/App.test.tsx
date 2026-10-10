@@ -10,8 +10,12 @@ const renderAt = (path: string) => render(<MemoryRouter initialEntries={[path]}>
 beforeEach(() => useAppStore.setState(initialState("2026-10-09")));
 
 describe("App routing", () => {
-  it("sends new users to onboarding", () => {
+  it("sends new users to the landing page", async () => {
     renderAt("/impots");
+    expect(await screen.findByRole("heading", { level: 1, name: "Chaque euro encaissé, déjà trié." })).toBeInTheDocument();
+  });
+  it("keeps the setup form one step away", () => {
+    renderAt("/bienvenue");
     expect(screen.getByRole("heading", { level: 1, name: "Bienvenue" })).toBeInTheDocument();
   });
   it("shows screens and the tab dock once onboarded", () => {

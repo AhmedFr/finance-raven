@@ -1,0 +1,23 @@
+.tile {
+  --figure-plate: var(--surface-2);
+  position: relative; margin: 0; background: var(--surface-2); border-radius: var(--radius-tile);
+  padding: 12px 12px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0;
+}
+.read {
+  position: absolute; top: 14px; right: 16px; z-index: 1; pointer-events: none;
+  font: 400 12px var(--font-mono); color: var(--ink-3); font-variant-numeric: tabular-nums;
+}
+.caption { padding: 0 8px; font-size: 13px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+.key { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--ink); }
+.key li { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 10px; height: 10px; border-radius: 3px; box-shadow: inset 0 0 0 1px var(--figure-edge); }
+.net { background: var(--lime); box-shadow: none; }
+.urssaf { background: var(--ink); box-shadow: none; }
+.tax { background: var(--figure-plate); }
+
+/* The one touch of colour: the split stack's own share in lime, the URSSAF share in ink. The figure only names the slices. */
+.tile :global(.split .sil) { transition: fill 260ms cubic-bezier(0.5, 0, 0.1, 1), stroke 260ms cubic-bezier(0.5, 0, 0.1, 1); }
+.tile :global(.split.net .sil) { fill: var(--lime); stroke: var(--lime-ink); }
+.tile :global(.split.net .lo) { stroke: rgba(12, 10, 8, 0.35); }
+.tile :global(.split.urssaf .sil) { fill: var(--ink); stroke: var(--ink); }
+.tile :global(.split.urssaf .lo) { stroke: var(--figure-edge); }

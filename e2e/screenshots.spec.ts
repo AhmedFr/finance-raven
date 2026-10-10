@@ -3,6 +3,14 @@ import { test } from "@playwright/test";
 test("README screenshots", async ({ page }) => {
   test.skip(!process.env.SCREENSHOTS, "run with pnpm screenshots");
   await page.emulateMedia({ colorScheme: "light", reducedMotion: "reduce" });
+  await page.goto("/");
+  await page.locator('[data-hairline="piles"] svg path').first().waitFor({ state: "attached" });
+  await page.waitForTimeout(800);
+  await page.screenshot({ path: "docs/screenshots/landing-mobile.png" });
+  await page.setViewportSize({ width: 1280, height: 860 });
+  await page.waitForTimeout(800);
+  await page.screenshot({ path: "docs/screenshots/landing-desktop.png" });
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/bienvenue");
   await page.getByRole("button", { name: /données de démo/ }).click();
   await page.getByRole("button", { name: "Plus tard" }).click({ timeout: 1000 }).catch(() => undefined);

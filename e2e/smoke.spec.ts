@@ -2,8 +2,19 @@ import { expect, test } from "@playwright/test";
 
 const y = new Date().getFullYear();
 
+test("landing page draws its figure and fits a 360px screen", async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 760 });
+  await page.goto("/");
+  const figure = page.locator('[data-hairline="piles"] svg');
+  await expect(figure.locator("path").first()).toBeAttached();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(360);
+  await expect(page.getByRole("button", { name: "Commencer" })).toBeInViewport();
+});
+
 test("setup, add an entry, data survives a reload", async ({ page }) => {
   await page.goto("/");
+  await expect(page).toHaveURL(/decouvrir/);
+  await page.getByRole("button", { name: "Commencer" }).click();
   await expect(page).toHaveURL(/bienvenue/);
 
   await page.getByRole("radio", { name: /BNC libéral/ }).check();

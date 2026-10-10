@@ -19,7 +19,7 @@ describe("DangerSection", () => {
       <MemoryRouter initialEntries={["/reglages"]}>
         <Routes>
           <Route path="/reglages" element={<DangerSection />} />
-          <Route path="/bienvenue" element={<p>setup</p>} />
+          <Route path="/decouvrir" element={<p>setup</p>} />
         </Routes>
       </MemoryRouter>,
     );

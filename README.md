@@ -5,6 +5,7 @@
 **App : https://finance-raven.vercel.app**
 
 <p align="center">
+  <img src="docs/screenshots/landing-mobile.png" width="260" alt="Page d'accueil sur mobile" />
   <img src="docs/screenshots/home-mobile.png" width="260" alt="Accueil sur mobile" />
   <img src="docs/screenshots/taxes-mobile.png" width="260" alt="Impôts sur mobile" />
   <img src="docs/screenshots/home-mobile-dark.png" width="260" alt="Accueil en mode sombre" />
@@ -67,6 +68,11 @@ Les corrections de taux et les signalements de bugs sont les bienvenus : voir [C
 Ce sont des estimations indicatives, pas un conseil fiscal. Les taux 2026 viennent de sources publiques. Vérifie-les sur
 [urssaf.fr](https://www.autoentrepreneur.urssaf.fr) et [impots.gouv.fr](https://www.impots.gouv.fr).
 Quand ils changent, mets à jour `rules.constants.ts` et les tests.
+
+## Crédits
+
+L'illustration de la page d'accueil est dessinée avec le moteur de [Hairline](https://github.com/lucasmarkes/hairline)
+(Lucas Marques, licence MIT), copié dans `src/vendor/hairline/`.
 
 ## Licence
 

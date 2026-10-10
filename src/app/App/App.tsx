@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router";
 import { EntriesScreen } from "../../features/entries/EntriesScreen";
 import { HomeScreen } from "../../features/home/HomeScreen";
@@ -8,10 +9,14 @@ import { UpdatePrompt } from "../../pwa/UpdatePrompt";
 import { AppLayout } from "../AppLayout";
 import { RequireOnboarded } from "../RequireOnboarded";
 
+// Lazy, so the figure engine only loads for visitors who have not set up yet.
+const LandingScreen = lazy(() => import("../../features/landing/LandingScreen").then((m) => ({ default: m.LandingScreen })));
+
 export function App() {
   return (
     <>
     <Routes>
+      <Route path="/decouvrir" element={<Suspense fallback={null}><LandingScreen /></Suspense>} />
       <Route path="/bienvenue" element={<OnboardingScreen />} />
       <Route element={<RequireOnboarded />}>
         <Route element={<AppLayout />}>

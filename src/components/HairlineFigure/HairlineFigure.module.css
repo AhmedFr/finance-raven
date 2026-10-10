@@ -1,0 +1,10 @@
+/* The kernel reads these; the plate must match whatever the figure sits on. */
+.figure {
+  width: 100%;
+  --hairline-plate: var(--figure-plate, var(--bg));
+  --hairline-hi: var(--ink);
+  --hairline-edge: var(--figure-edge);
+  --hairline-mid: var(--figure-mid);
+  --hairline-lo: var(--figure-lo);
+  --hairline-stroke: 1;
+}

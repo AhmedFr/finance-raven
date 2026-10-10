@@ -1,0 +1,1 @@
+export { FigureTile } from "./FigureTile";

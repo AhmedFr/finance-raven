@@ -12,7 +12,7 @@ export function DangerSection() {
   const onClick = () => {
     if (!armed) { setArmed(true); return; }
     resetAll();
-    navigate("/bienvenue", { replace: true });
+    navigate("/decouvrir", { replace: true });
   };
   return (
     <Card icon={TriangleAlert} title="Zone sensible">
