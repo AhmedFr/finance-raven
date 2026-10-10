@@ -1,0 +1,12 @@
+/* Zero-height sticky slot: no layout shift when the bar appears, and cancels the column gap. */
+.slot { position: sticky; top: 0; z-index: 15; height: 0; margin-bottom: calc(-1 * var(--section-gap)); }
+.bar {
+  position: absolute; top: 0; left: calc(-1 * var(--gutter)); right: calc(-1 * var(--gutter));
+  display: flex; align-items: baseline; gap: 10px; min-height: 44px; width: auto; text-align: left;
+  padding: calc(10px + env(safe-area-inset-top)) var(--gutter) 10px; font: inherit; color: var(--ink); cursor: pointer;
+  background: color-mix(in srgb, var(--bg) 90%, transparent); border: 0; border-bottom: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.label { font-size: 13px; color: var(--ink-2); }
+.value { font-size: 16px; font-weight: 500; }
+.projected { font-size: 13px; color: var(--ink-3); }

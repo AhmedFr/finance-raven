@@ -1,4 +1,4 @@
-import { act, render } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { makeEntry, makeProfile } from "../../../domain/testing/fixtures";
@@ -26,7 +26,7 @@ afterEach(() => vi.useRealTimers());
 describe("EntriesScreen", () => {
   it("lists months oldest first and scrolls the current month to the top", () => {
     const { container } = render(<MemoryRouter><EntriesScreen /></MemoryRouter>);
-    const labels = [...container.querySelectorAll("section")].map((s) => s.getAttribute("aria-label"));
+    const labels = [...container.querySelectorAll("section[aria-label]")].map((s) => s.getAttribute("aria-label"));
     expect(labels).toEqual(["févr. 2026", "juin 2026", "nov. 2026"]);
     expect(scrolled).toHaveLength(1);
     expect(scrolled[0]).toBe(container.querySelector('section[aria-label="juin 2026"]'));
@@ -51,5 +51,19 @@ describe("EntriesScreen", () => {
     act(() => useAppStore.getState().setYear(2026));
     expect(scrolled).toHaveLength(2);
     expect(scrolled[1].getAttribute("aria-label")).toBe("juin 2026");
+  });
+
+  it("shows the net cumul card and the cumulative net under each month header", () => {
+    const { container } = render(<MemoryRouter><EntriesScreen /></MemoryRouter>);
+    expect(screen.getByRole("heading", { name: "Net cumulé 2026" })).toBeInTheDocument();
+    const june = container.querySelector('section[aria-label="juin 2026"] header') as HTMLElement;
+    expect(june.textContent).toContain("cumul net");
+    expect(screen.queryByRole("button", { name: "Voir le net cumulé" })).toBeNull();
+  });
+
+  it("hides the net cumul card when the year has no entries", () => {
+    useAppStore.setState({ entries: [] });
+    render(<MemoryRouter><EntriesScreen /></MemoryRouter>);
+    expect(screen.queryByRole("heading", { name: "Net cumulé 2026" })).toBeNull();
   });
 });

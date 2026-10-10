@@ -10,3 +10,4 @@
   background: var(--lime); color: var(--lime-ink); display: grid; place-items: center; cursor: pointer;
   box-shadow: var(--shadow-float);
 }
+.cumulCard { scroll-margin-top: 16px; }

@@ -6,5 +6,7 @@ export interface EntryListProps {
   ledger: Ledger;
   sourceNames: Map<string, string>;
   onOpen: (id: string) => void;
+  /** Projected cumulative net at each month, keyed by year*12 + month. */
+  cumulByMonth?: Map<number, number>;
   groupRef?: (monthIndex: number) => (node: HTMLElement | null) => void;
 }

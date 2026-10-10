@@ -10,8 +10,12 @@ test("README screenshots", async ({ page }) => {
   await page.goto("/impots");
   await page.screenshot({ path: "docs/screenshots/taxes-mobile.png" });
   await page.goto("/encaissements");
-  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  await page.waitForTimeout(500);
+  await page.evaluate(() => window.scrollTo(0, 0));
   await page.screenshot({ path: "docs/screenshots/entries-mobile.png" });
+  await page.goto("/encaissements");
+  await page.getByRole("button", { name: "Voir le net cumulé" }).waitFor();
+  await page.screenshot({ path: "docs/screenshots/entries-scrolled-mobile.png" });
   await page.goto("/encaissements");
   await page.getByRole("button", { name: "Ajouter un encaissement" }).click();
   await page.getByRole("dialog").waitFor();
