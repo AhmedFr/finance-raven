@@ -11,3 +11,6 @@ playwright-report
 *storybook.log
 .DS_Store
 .env*
+
+# Local design notes (not published)
+docs/superpowers/
