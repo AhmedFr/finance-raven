@@ -27,9 +27,10 @@ export function EntriesScreen() {
   const groupRef = useScrollToCurrentMonth(groups, year, today);
   const sourceNames = useMemo(() => new Map(sources.map((s) => [s.id, s.name])), [sources]);
   const cumul = useNetCumul(year);
-  const cumulByMonth = useMemo(() => new Map(cumul.points.map((p) => [monthIndex(year, p.month + 1), p.projected])), [cumul, year]);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const cardInView = useInViewport(cardRef);
+  const cumulByMonth = useMemo(() => new Map(cumul.points.map((p) => [monthIndex(year, p.month + 1), { received: p.received, projected: p.projected }])), [cumul, year]);
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [observeCard, cardInView] = useInViewport();
+  const setCard = useCallback((node: HTMLDivElement | null) => { cardRef.current = node; observeCard(node); }, [observeCard]);
   const todayMonth = yearOf(today) === year ? monthIndexOfIso(today) % 12 : null;
   const close = useCallback(() => setSheet({ mode: "closed" }), []);
   const count = groups.reduce((n, g) => n + g.entries.length, 0);
@@ -50,7 +51,7 @@ export function EntriesScreen() {
             visible={!cardInView}
             onClick={() => cardRef.current?.scrollIntoView({ block: "start" })}
           />
-          <div ref={cardRef} className={styles.cumulCard}>
+          <div ref={setCard} className={styles.cumulCard}>
             <NetCumulCard cumul={cumul} year={year} todayMonth={todayMonth} />
           </div>
         </>

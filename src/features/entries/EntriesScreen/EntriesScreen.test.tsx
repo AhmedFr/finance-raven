@@ -54,10 +54,12 @@ describe("EntriesScreen", () => {
   });
 
   it("shows the net cumul card and the cumulative net under each month header", () => {
+    useAppStore.setState({ entries: [...useAppStore.getState().entries, makeEntry({ date: "2026-05-01", status: "prevu" })] });
     const { container } = render(<MemoryRouter><EntriesScreen /></MemoryRouter>);
     expect(screen.getByRole("heading", { name: "Net cumulé 2026" })).toBeInTheDocument();
     const june = container.querySelector('section[aria-label="juin 2026"] header') as HTMLElement;
     expect(june.textContent).toContain("cumul net");
+    expect(june.textContent).toContain("avec prévus");
     expect(screen.queryByRole("button", { name: "Voir le net cumulé" })).toBeNull();
   });
 

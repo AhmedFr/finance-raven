@@ -16,6 +16,8 @@ describe("NetCumulBar", () => {
     expect((btn.textContent ?? "").replace(/\s/g, " ")).toContain("Net cumulé 2026");
     expect((btn.textContent ?? "").replace(/\s/g, " ")).toContain("5 120 €");
     expect(btn.textContent).not.toContain("→");
+    const described = document.getElementById(btn.getAttribute("aria-describedby") ?? "");
+    expect((described?.textContent ?? "").replace(/\s/g, " ")).toBe("5 120 €");
     fireEvent.click(btn);
     expect(onClick).toHaveBeenCalled();
   });

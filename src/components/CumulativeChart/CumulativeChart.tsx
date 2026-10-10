@@ -23,9 +23,11 @@ export function CumulativeChart({ points, year, todayMonth }: CumulativeChartPro
   const end = receivedEnd(points, todayMonth);
   const received = points.slice(0, end + 1).map((p) => ({ x: xOf(p.month), y: yOf(p.received) }));
   const hasProjection = points.some((p) => p.projected > p.received);
-  const projected = hasProjection && end >= 0 && end < 11
-    ? [received[end], ...points.slice(end + 1).map((p) => ({ x: xOf(p.month), y: yOf(p.projected) }))]
-    : [];
+  const projected = !hasProjection || end >= 11
+    ? []
+    : end < 0
+      ? points.map((p) => ({ x: xOf(p.month), y: yOf(p.projected) }))
+      : [received[end], ...points.slice(end + 1).map((p) => ({ x: xOf(p.month), y: yOf(p.projected) }))];
   const today = todayMonth != null && points[todayMonth] ? { x: xOf(todayMonth), y: yOf(points[todayMonth].received) } : null;
 
   const hovered = hover == null ? null : points[hover];

@@ -38,4 +38,11 @@ describe("CumulativeChart", () => {
     rerender(<CumulativeChart points={receivedOnly} year={2026} todayMonth={null} />);
     expect(container.querySelector("path.projected")).toBeNull();
   });
+  it("draws the projection from the start when only planned entries exist", () => {
+    const planned = zeros.map((p) => ({ ...p, projected: p.month >= 3 ? 2000 : 0 }));
+    const { container } = render(<CumulativeChart points={planned} year={2026} todayMonth={null} />);
+    expect(container.querySelector("path.projected")).not.toBeNull();
+    expect(container.querySelector("path.area")).toBeNull();
+    expect(container.innerHTML).not.toContain("NaN");
+  });
 });
