@@ -15,7 +15,7 @@
 ## Ce que ça fait
 
 - **À garder sur ton compte** : l'URSSAF, l'impôt sur le revenu et la CFE déjà dus sur l'argent encaissé.
-- **Encaissements** : reçus ou prévus, en EUR, USD, GBP ou CHF, avec le montant réellement crédité en euros.
+- **Encaissements** : reçus ou prévus, en EUR, USD, GBP ou CHF, convertis au taux du jour de réception (avant frais), comme il faut les déclarer.
 - **Calendrier URSSAF** : déclaration mensuelle ou trimestrielle, 1re déclaration après la création, échéances et cases « payé ».
 - **Impôt sur le revenu** : barème progressif ou versement libératoire, avec l'option la moins chère mise en avant.
 - **Seuils** : plafond micro (proratisé l'année de création) et franchise de TVA.

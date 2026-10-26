@@ -68,8 +68,8 @@ function fxCheck({ ledger, year }: ChecksInput): Check | null {
     .filter((e) => e.status === "recu" && e.currency !== "EUR" && e.eurReceived == null).length;
   if (!n) return null;
   return {
-    id: "fx", tone: "warn", title: `${n} encaissement${n > 1 ? "s" : ""} en devise sans montant en €`,
-    body: "Saisis le montant réellement crédité en euros : c'est lui que tu déclares.",
+    id: "fx", tone: "warn", title: `${n} encaissement${n > 1 ? "s" : ""} en devise sans taux du jour`,
+    body: "Saisis le taux du jour de réception : tu déclares tout le montant reçu en devise converti à ce taux, avant frais, même la part pas encore convertie.",
   };
 }
 

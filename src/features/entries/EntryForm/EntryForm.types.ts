@@ -10,7 +10,7 @@ export interface EntryDraft {
   label: string;
   amount: string;
   currency: Currency;
-  eurReceived: string;
+  fxRate: string;
   status: EntryStatus;
   zone: ClientZone;
 }

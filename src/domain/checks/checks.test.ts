@@ -43,7 +43,7 @@ describe("buildChecks", () => {
   it("flags received foreign-currency entries without a EUR amount", () => {
     const entries = [makeEntry({ currency: "USD", eurReceived: null, status: "recu", date: "2026-05-01" }), makeEntry({ currency: "USD", eurReceived: null, status: "recu", date: "2026-06-01" })];
     const fx = buildChecks({ ledger: createLedger(longAgo, entries), year: 2026, today: "2026-10-09", lastExportAt: "2026-10-01" }).find((c) => c.id === "fx");
-    expect(fx?.title).toBe("2 encaissements en devise sans montant en €");
+    expect(fx?.title).toBe("2 encaissements en devise sans taux du jour");
   });
 
   it("asks for a backup when the last export is older than 30 days", () => {

@@ -52,6 +52,7 @@ export interface Entry {
   label: string;
   amount: number;
   currency: Currency;
+  /** EUR value to declare: full amount × market rate on the receipt day, before bank fees. null = estimate with fxToEur. */
   eurReceived: number | null;
   status: EntryStatus;
   zone: ClientZone;

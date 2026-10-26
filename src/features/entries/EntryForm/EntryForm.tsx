@@ -3,6 +3,7 @@ import type { ClientZone, Currency, EntryStatus } from "../../../domain/model.ty
 import type { EntryFormProps } from "./EntryForm.types";
 import { Button } from "../../../components/Button";
 import { Field } from "../../../components/Field";
+import { formatEur } from "../../../domain/format/format";
 import { CURRENCIES, FR, ZONES } from "../../../i18n/fr";
 import { NEW_SOURCE } from "./EntryForm.constants";
 import { useEntryForm } from "./useEntryForm";
@@ -41,8 +42,9 @@ export function EntryForm(props: EntryFormProps) {
         </select>
       </Field>
       {draft.currency !== "EUR" && (
-        <Field label="Reçu en €" hint="montant réellement crédité ; vide = estimation" htmlFor={id("eur")} className={styles.wide}>
-          <input id={id("eur")} inputMode="decimal" value={draft.eurReceived} onChange={(e) => f.set("eurReceived", e.target.value)} />
+        <Field label="Taux du jour de réception" htmlFor={id("rate")} className={styles.wide}
+          hint={f.declaredEur == null ? `1 ${draft.currency} = ? € · taux du marché, avant frais ; vide = estimation` : `${formatEur(f.declaredEur)} à déclarer · avant frais, même la part pas convertie`}>
+          <input id={id("rate")} inputMode="decimal" placeholder="Ex. 0,8975" value={draft.fxRate} onChange={(e) => f.set("fxRate", e.target.value)} />
         </Field>
       )}
       <Field label="Statut" htmlFor={id("status")}>

@@ -42,7 +42,7 @@ export function ProfileSection() {
         <NumberField key={`budget-${profile.monthlyBudget}`} label="Budget de vie mensuel (€)" value={profile.monthlyBudget} onCommit={(monthlyBudget) => update({ monthlyBudget })} />
         <NumberField key={`cfe-${profile.cfePerYear}`} label="CFE estimée par an (€)" hint="due à partir de l'année suivant la création" value={profile.cfePerYear} onCommit={(cfePerYear) => update({ cfePerYear })} />
         {(["USD", "GBP", "CHF"] as const).map((c) => (
-          <NumberField key={`fx-${c}-${profile.fxToEur[c]}`} label={`Taux ${c} → EUR`} hint="pour les montants sans « Reçu en € »" min={0.0001}
+          <NumberField key={`fx-${c}-${profile.fxToEur[c]}`} label={`Taux ${c} → EUR`} hint="estimation pour les encaissements sans taux du jour" min={0.0001}
             value={profile.fxToEur[c]} onCommit={(v) => update({ fxToEur: { ...profile.fxToEur, [c]: v } })} />
         ))}
       </div>
